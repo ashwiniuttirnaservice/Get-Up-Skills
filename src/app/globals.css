@@ -35,3 +35,71 @@ body {
     transform: translateY(0);
   }
 }
+
+/* =========================================================
+   INSTRUCTOR SECTION ANIMATIONS
+========================================================= */
+
+@keyframes instructorFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -16px, 0);
+  }
+}
+
+@keyframes polygonFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(12deg);
+  }
+
+  50% {
+    transform: translate3d(8px, -14px, 0) rotate(24deg);
+  }
+}
+
+@keyframes sparkleRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.15);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.instructor-float {
+  animation: instructorFloat 7s ease-in-out infinite;
+}
+
+.instructor-float-delay-1 {
+  animation: instructorFloat 6s ease-in-out infinite 1s;
+}
+
+.instructor-float-delay-2 {
+  animation: instructorFloat 5s ease-in-out infinite 0.5s;
+}
+
+.instructor-float-delay-3 {
+  animation: instructorFloat 5s ease-in-out infinite 1.5s;
+}
+
+.polygon-float {
+  animation: polygonFloat 9s ease-in-out infinite;
+}
+
+.polygon-float-delay {
+  animation: polygonFloat 8s ease-in-out infinite 1s;
+}
+
+.sparkle-rotate {
+  animation: sparkleRotate 4s linear infinite;
+}
