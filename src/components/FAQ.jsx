@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { faqs } from "@/data/site";
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
+function FAQItem({ question, answer }) {
   const [open, setOpen] = useState(false);
 
   return (

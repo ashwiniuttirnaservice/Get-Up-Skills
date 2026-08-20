@@ -1,16 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Clock, Radio, Star, Users } from "lucide-react";
-import type { Course } from "@/data/courses";
 
-const badgeStyles: Record<NonNullable<Course["badge"]>, string> = {
+const badgeStyles = {
   Bestseller: "bg-slate-900 text-white",
   "Highly Rated": "bg-amber-100 text-amber-700",
   "In Demand": "bg-rose-100 text-rose-700",
   "Brand New": "bg-emerald-100 text-emerald-700",
 };
 
-function discountPercent(price: string, original?: string) {
+function discountPercent(price, original) {
   if (!original) return null;
   const p = Number(price.replace(/[^\d]/g, ""));
   const o = Number(original.replace(/[^\d]/g, ""));
@@ -18,19 +17,16 @@ function discountPercent(price: string, original?: string) {
   return Math.round(((o - p) / o) * 100);
 }
 
-export default function CourseCard({ course }: { course: Course }) {
+export default function CourseCard({ course }) {
   const discount = discountPercent(course.price, course.originalPrice);
 
   return (
     <div
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
-      style={{ ["--accent" as string]: course.color }}
+      style={{ "--accent": course.color }}
     >
       {/* Banner */}
-      <Link
-        href={`/courses/${course.id}`}
-        className="relative block h-40 overflow-hidden"
-      >
+      <Link href={`/courses/${course.id}`} className="relative block h-40 overflow-hidden">
         <Image
           src={course.image}
           alt={course.title}
@@ -55,12 +51,20 @@ export default function CourseCard({ course }: { course: Course }) {
 
       <div className="flex flex-1 flex-col p-6">
         <div className="flex items-center justify-between">
-          <span
-            className="rounded-full px-3 py-1 text-xs font-semibold"
-            style={{ backgroundColor: `${course.color}1a`, color: course.color }}
-          >
-            {course.category}
-          </span>
+          <div className="flex items-center gap-2">
+            <span
+              className="flex h-6 w-6 items-center justify-center rounded-md font-mono text-[10px] font-bold"
+              style={{ backgroundColor: `${course.color}1a`, color: course.color }}
+            >
+              {course.code}
+            </span>
+            <span
+              className="rounded-full px-3 py-1 text-xs font-semibold"
+              style={{ backgroundColor: `${course.color}1a`, color: course.color }}
+            >
+              {course.category}
+            </span>
+          </div>
           <span className="text-xs font-medium text-slate-500">{course.level}</span>
         </div>
 

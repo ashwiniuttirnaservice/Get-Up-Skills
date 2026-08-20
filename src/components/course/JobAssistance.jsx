@@ -1,5 +1,4 @@
 import { FileText, MessagesSquare, Search, Target } from "lucide-react";
-import type { Course } from "@/data/courses";
 
 const items = [
   {
@@ -24,7 +23,7 @@ const items = [
   },
 ];
 
-export default function JobAssistance({ course }: { course: Course }) {
+export default function JobAssistance({ course }) {
   return (
     <section id="career" className="scroll-mt-28 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -9,7 +9,7 @@ const tabs = [
   { label: "FAQ", href: "#faq" },
 ];
 
-export default function SectionTabs({ accent }: { accent: string }) {
+export default function SectionTabs({ accent }) {
   return (
     <div className="sticky top-[65px] z-30 border-b border-slate-200 bg-white/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl gap-6 overflow-x-auto px-4 sm:px-6 lg:px-8">
@@ -17,7 +17,7 @@ export default function SectionTabs({ accent }: { accent: string }) {
           <a
             key={tab.href}
             href={tab.href}
-            style={{ ["--accent" as string]: accent }}
+            style={{ "--accent": accent }}
             className="whitespace-nowrap border-b-2 border-transparent py-3.5 text-sm font-semibold text-slate-500 transition hover:text-[var(--accent)] hover:border-[var(--accent)]"
           >
             {tab.label}

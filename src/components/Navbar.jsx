@@ -14,15 +14,13 @@ import {
   SIGNUP_URL,
 } from "@/data/site";
 
-type MenuItem = { label: string; href: string; desc: string };
-
-function NavDropdown({ label, items }: { label: string; items: MenuItem[] }) {
+function NavDropdown({ label, items }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
 
   useEffect(() => {
-    function onClickOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
+    function onClickOutside(e) {
+      if (ref.current && !ref.current.contains(e.target)) {
         setOpen(false);
       }
     }
@@ -64,15 +62,7 @@ function NavDropdown({ label, items }: { label: string; items: MenuItem[] }) {
   );
 }
 
-function MobileMenuGroup({
-  label,
-  items,
-  onNavigate,
-}: {
-  label: string;
-  items: MenuItem[];
-  onNavigate: () => void;
-}) {
+function MobileMenuGroup({ label, items, onNavigate }) {
   const [open, setOpen] = useState(false);
 
   return (

@@ -25,7 +25,7 @@ const LINE_DELAY = 260; // ms between revealed output lines
 const HOLD_TIME = 2600; // ms to hold the finished state before looping
 const RESTART_DELAY = 500; // ms pause before typing starts again
 
-function highlight(line: string) {
+function highlight(line) {
   return line
     .replace(/(function|return|let|for)/g, '<span class="text-[#E9577C]">$1</span>')
     .replace(/(fibonacci)/g, '<span class="text-[#53B8EC]">$1</span>');
@@ -35,10 +35,10 @@ export default function CodeShowcase() {
   const [codeTyped, setCodeTyped] = useState(0); // characters of FULL_CODE typed
   const [typedCommand, setTypedCommand] = useState("");
   const [visibleLines, setVisibleLines] = useState(0);
-  const [phase, setPhase] = useState<"code" | "command" | "output" | "done">("code");
+  const [phase, setPhase] = useState("code"); // "code" | "command" | "output" | "done"
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
+    let timer;
 
     if (phase === "code") {
       if (codeTyped < FULL_CODE.length) {

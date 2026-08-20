@@ -1,7 +1,7 @@
-import { GraduationCap, Clock, Briefcase, Users, type LucideIcon } from "lucide-react";
+import { GraduationCap, Clock, Briefcase, Users } from "lucide-react";
 import { features } from "@/data/site";
 
-const icons: Record<string, LucideIcon> = {
+const icons = {
   GraduationCap,
   Clock,
   Briefcase,
