@@ -9,9 +9,12 @@ const tabs = [
   { label: "FAQ", href: "#faq" },
 ];
 
+// Rendered right under <Navbar/> inside a shared sticky wrapper (see the
+// course detail pages) — no sticky/top offset of its own, so it always sits
+// flush against the navbar with zero gap instead of guessing its pixel height.
 export default function SectionTabs({ accent }) {
   return (
-    <div className="sticky top-[65px] z-30 border-b border-slate-200 bg-white/95 backdrop-blur-md">
+    <div className="border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl gap-6 overflow-x-auto px-4 sm:px-6 lg:px-8">
         {tabs.map((tab) => (
           <a

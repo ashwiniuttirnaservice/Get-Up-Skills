@@ -4,7 +4,6 @@ import { Mail, MessageCircle, Send, Globe } from "lucide-react";
 const quickLinks = [
   { label: "Home", href: "#home" },
   { label: "Courses", href: "#courses" },
-  { label: "Success Stories", href: "#success-stories" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
 ];

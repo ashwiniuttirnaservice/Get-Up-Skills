@@ -1,9 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CredibilityBar from "@/components/CredibilityBar";
-import SuccessStories from "@/components/SuccessStories";
 import Courses from "@/components/Courses";
-import Companies from "@/components/Companies";
 import Instructors from "@/components/Instructors";
 import WhyUs from "@/components/WhyUs";
 import Stats from "@/components/Stats";
@@ -19,9 +17,7 @@ export default function Home() {
       <main>
         <Hero />
         <CredibilityBar />
-        <SuccessStories />
         <Courses />
-        <Companies />
         <Instructors />
         <WhyUs />
         <Stats />

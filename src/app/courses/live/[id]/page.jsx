@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { ShieldCheck } from "lucide-react";
-import { courses, getCourse } from "@/data/courses";
+import { getCourseById } from "@/lib/api";
+import { toCardCourse } from "@/lib/mapApiCourse";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
@@ -13,24 +14,24 @@ import CourseCurriculum from "@/components/course/CourseCurriculum";
 import JobAssistance from "@/components/course/JobAssistance";
 import EnrollBar from "@/components/course/EnrollBar";
 
-export function generateStaticParams() {
-  return courses.map((c) => ({ id: c.id }));
-}
-
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const course = getCourse(id);
-  if (!course) return {};
+  const apiCourse = await getCourseById(id);
+  if (!apiCourse) return {};
   return {
-    title: `${course.title} — GetUpSkill`,
-    description: course.desc,
+    title: `${apiCourse.title} — GetUpSkill`,
+    description: apiCourse.description?.slice(0, 160),
   };
 }
 
-export default async function CourseDetailPage({ params }) {
+// Same page template as the static /courses/[id] detail page — this one is
+// just fed by a real getCourseById() API call instead of the static catalog.
+export default async function LiveCourseDetailPage({ params }) {
   const { id } = await params;
-  const course = getCourse(id);
-  if (!course) notFound();
+  const apiCourse = await getCourseById(id);
+  if (!apiCourse) notFound();
+
+  const course = toCardCourse(apiCourse);
 
   return (
     <>
