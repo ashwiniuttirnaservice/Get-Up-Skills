@@ -1,0 +1,149 @@
+export type Course = {
+  id: string;
+  title: string;
+  category: string;
+  desc: string;
+  longDesc: string;
+  duration: string;
+  mode: "Live" | "Self-Paced";
+  level: "Beginner" | "Intermediate" | "Advanced";
+  rating: number;
+  reviews: string;
+  students: string;
+  price: string;
+  originalPrice?: string;
+  badge?: "Highly Rated" | "In Demand" | "Brand New" | "Bestseller";
+  skills: string[];
+  outcomes: string[]; // job roles this course prepares you for
+  color: string; // accent color for the card
+  image: string; // thumbnail, public/courses/<id>.svg
+};
+
+export const courses: Course[] = [
+  {
+    id: "full-stack-web-dev",
+    title: "Full Stack Web Development Bootcamp",
+    category: "Development",
+    desc: "Master the MERN stack — React, Node.js, Express & MongoDB — by building real, production-grade projects.",
+    longDesc:
+      "An industry-projects-based bootcamp built by hiring managers to take you from zero to a job-ready full stack developer. You'll build and deploy real, production-grade applications using React, Node.js, Express and MongoDB — with live mentor support, code reviews and a capstone project for your portfolio.",
+    duration: "16 weeks",
+    mode: "Live",
+    level: "Beginner",
+    rating: 4.9,
+    reviews: "1,240",
+    students: "1.2k+",
+    price: "₹14,999",
+    originalPrice: "₹22,000",
+    badge: "Bestseller",
+    skills: ["React", "Node.js", "MongoDB", "Express"],
+    outcomes: ["Frontend Developer", "Backend Developer", "Full Stack Engineer"],
+    color: "#53B8EC",
+    image: "/courses/full-stack-web-dev.svg",
+  },
+  {
+    id: "data-science-bootcamp",
+    title: "Data Science & Machine Learning Bootcamp",
+    category: "Data",
+    desc: "Learn Python, statistics, ML and data visualization from scratch with hands-on capstone projects.",
+    longDesc:
+      "A comprehensive path from spreadsheet-level thinking to AI-assisted data workflows — covering Python, statistics, SQL and machine learning. Work with real, messy, multi-million-record datasets across finance, retail and marketing to build a portfolio recruiters actually notice.",
+    duration: "20 weeks",
+    mode: "Live",
+    level: "Intermediate",
+    rating: 4.9,
+    reviews: "2,010",
+    students: "980+",
+    price: "₹19,999",
+    originalPrice: "₹28,000",
+    badge: "In Demand",
+    skills: ["Python", "Pandas", "Scikit-learn", "SQL"],
+    outcomes: ["Data Analyst", "Data Scientist", "ML Engineer"],
+    color: "#485DAC",
+    image: "/courses/data-science-bootcamp.svg",
+  },
+  {
+    id: "digital-marketing",
+    title: "Digital Marketing Mastery",
+    category: "Marketing",
+    desc: "SEO, performance ads, content strategy and analytics — grow any brand with data-driven marketing.",
+    longDesc:
+      "A practical, campaign-first course in SEO, performance advertising, content strategy and analytics. You'll run real ad campaigns, optimize live landing pages and build a case-study portfolio that proves you can grow a brand — not just talk about it.",
+    duration: "10 weeks",
+    mode: "Self-Paced",
+    level: "Beginner",
+    rating: 4.7,
+    reviews: "860",
+    students: "1.5k+",
+    price: "₹9,999",
+    originalPrice: "₹15,000",
+    skills: ["SEO", "Google Ads", "Analytics", "Content"],
+    outcomes: ["Digital Marketer", "SEO Specialist", "Performance Marketer"],
+    color: "#E9577C",
+    image: "/courses/digital-marketing.svg",
+  },
+  {
+    id: "ui-ux-design",
+    title: "UI/UX Design Foundations",
+    category: "Design",
+    desc: "Design thinking, wireframing and prototyping in Figma to craft delightful, user-first products.",
+    longDesc:
+      "Learn the full design process — research, wireframing, prototyping and usability testing — in Figma, working on real client-style briefs. By the end you'll have a polished case-study portfolio ready to show product teams.",
+    duration: "8 weeks",
+    mode: "Self-Paced",
+    level: "Beginner",
+    rating: 4.6,
+    reviews: "410",
+    students: "760+",
+    price: "₹8,999",
+    badge: "Brand New",
+    skills: ["Figma", "Wireframing", "Prototyping"],
+    outcomes: ["UI Designer", "UX Designer", "Product Designer"],
+    color: "#C7DA40",
+    image: "/courses/ui-ux-design.svg",
+  },
+  {
+    id: "cloud-devops",
+    title: "Cloud & DevOps Engineering",
+    category: "Cloud",
+    desc: "AWS, Docker, Kubernetes and CI/CD pipelines to deploy and scale applications like a pro.",
+    longDesc:
+      "Go from writing code to shipping and scaling it. Learn AWS core services, containerization with Docker, orchestration with Kubernetes, and building CI/CD pipelines — all through hands-on labs that mirror real production environments.",
+    duration: "14 weeks",
+    mode: "Live",
+    level: "Advanced",
+    rating: 4.8,
+    reviews: "390",
+    students: "540+",
+    price: "₹17,999",
+    originalPrice: "₹24,000",
+    skills: ["AWS", "Docker", "Kubernetes", "CI/CD"],
+    outcomes: ["DevOps Engineer", "Cloud Engineer", "Site Reliability Engineer"],
+    color: "#53B8EC",
+    image: "/courses/cloud-devops.svg",
+  },
+  {
+    id: "python-programming",
+    title: "Python Programming for Everyone",
+    category: "Development",
+    desc: "Go from zero to job-ready with core Python, OOP, and automation projects built along the way.",
+    longDesc:
+      "A beginner-friendly, project-driven introduction to Python — covering core syntax, object-oriented programming and real automation scripts. No prior coding experience needed; by the end you'll be comfortable writing and debugging your own programs.",
+    duration: "6 weeks",
+    mode: "Self-Paced",
+    level: "Beginner",
+    rating: 4.9,
+    reviews: "3,120",
+    students: "2k+",
+    price: "₹5,999",
+    badge: "Highly Rated",
+    skills: ["Python", "OOP", "Automation"],
+    outcomes: ["Python Developer", "Automation Engineer", "Junior Backend Developer"],
+    color: "#485DAC",
+    image: "/courses/python-programming.svg",
+  },
+];
+
+export function getCourse(id: string) {
+  return courses.find((c) => c.id === id);
+}
