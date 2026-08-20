@@ -1,42 +1,39 @@
-import { courses } from "@/data/courses";
-import CourseCard from "./CourseCard";
+import Link from "next/link";
+import { courses as staticCourses } from "@/data/courses";
+import { getCourses } from "@/lib/api";
+import { toCardCourse } from "@/lib/mapApiCourse";
+import CourseCarousel from "./CourseCarousel";
 
-export default function Courses() {
+export default async function Courses() {
+  const apiCourses = await getCourses();
+  // Fall back to the static catalog only if the LMS backend has nothing yet.
+  const courses = apiCourses.length ? apiCourses.map(toCardCourse) : staticCourses;
+
   return (
     <section id="courses" className="bg-slate-50 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* futrainc-style numbered section header */}
-        <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-slate-400">
-          <span className="text-[#E9577C]">02</span>
-          <span>—</span>
-          <span>our courses</span>
-          <span className="h-px flex-1 bg-slate-200" />
-        </div>
-
-        <h2 className="mt-5 max-w-3xl text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
-          Six courses.{" "}
-          <span className="bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] bg-clip-text text-transparent">
-            One outcome — hired.
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-[#E9577C]">
+            Our Courses
           </span>
-        </h2>
-        <p className="mt-4 max-w-2xl text-slate-600">
-          Each course solves a real skill gap on its own — and compounds into a
-          job-ready portfolio when you take them together.
-        </p>
-
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {courses.map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
+          <h2 className="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Featured Courses
+          </h2>
+          <p className="mt-4 text-slate-600">
+            Hand-picked, industry-relevant programs designed to take you from
+            fundamentals to a job-ready portfolio.
+          </p>
         </div>
+
+        <CourseCarousel courses={courses} />
 
         <div className="mt-12 flex flex-col items-center gap-4 text-center">
-          <a
-            href="#"
+          <Link
+            href="/courses"
             className="inline-flex items-center rounded-md border-2 border-[#485DAC] px-6 py-3 font-semibold text-[#485DAC] transition hover:bg-[#485DAC] hover:text-white"
           >
             View All Courses
-          </a>
+          </Link>
           <span className="text-sm font-semibold text-slate-500">
             🛡️ GetUpSkill Promise — Excellence or 100% Refund
           </span>

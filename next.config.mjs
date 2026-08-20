@@ -8,6 +8,14 @@ const nextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.getupskills.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

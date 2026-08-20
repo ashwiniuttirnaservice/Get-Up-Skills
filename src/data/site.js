@@ -40,71 +40,6 @@ export const stats = [
   { value: "95%", label: "Completion Rate" },
 ];
 
-export const successStories = [
-  {
-    id: 1,
-    name: "Sneha Kulkarni",
-    from: "Career Break",
-    to: "Data Analyst",
-    tag: "Career Break",
-    quote: "After a 3-year career break, GetUpSkill's structured path got me back into tech with confidence.",
-  },
-  {
-    id: 2,
-    name: "Mehul Ligade",
-    from: "Fresher",
-    to: "AI Engineer",
-    tag: "Fresher",
-    quote: "Zero coding background to an AI Engineer role in 8 months — the projects made the difference.",
-  },
-  {
-    id: 3,
-    name: "Priya Sharma",
-    from: "Support Engineer",
-    to: "Frontend Developer",
-    tag: "IT Background",
-    quote: "The Full Stack bootcamp helped me switch from support to a developer role at a product company.",
-  },
-  {
-    id: 4,
-    name: "Rahul Verma",
-    from: "Mechanical Grad",
-    to: "Full Stack Engineer",
-    tag: "Non-IT Background",
-    quote: "Coming from a non-CS background, the mentors broke everything down step by step.",
-  },
-  {
-    id: 5,
-    name: "Sunita Kaur",
-    from: "Homemaker",
-    to: "Data Analyst",
-    tag: "Career Restart",
-    quote: "Flexible weekend cohorts let me learn while managing home — now I work remotely as an analyst.",
-  },
-  {
-    id: 6,
-    name: "Aditya Rao",
-    from: "Fresher",
-    to: "Digital Marketer",
-    tag: "Fresher",
-    quote: "Landed my first marketing role within 2 months of finishing the Digital Marketing course.",
-  },
-];
-
-export const companies = [
-  "TCS",
-  "Infosys",
-  "Cognizant",
-  "Deloitte",
-  "EY",
-  "Accenture",
-  "Wipro",
-  "Capgemini",
-  "Oracle",
-  "Zoho",
-  "HCL",
-  "Tech Mahindra",
-];
 
 export const instructors = [
   {
@@ -113,6 +48,7 @@ export const instructors = [
     title: "Full Stack & Data Engineering Mentor",
     bio: "12+ years building products across startups and enterprises. Ex-engineering lead who loves breaking complex systems into simple, teachable pieces.",
     tag: "12+ Years Experience",
+    photo: "/instructors/avatar-1.svg",
   },
   {
     id: 2,
@@ -120,6 +56,7 @@ export const instructors = [
     title: "Data Analytics Lead",
     bio: "8+ years in data analytics across Europe and India, Microsoft certified. Focused on real-world case studies over theory.",
     tag: "8+ Years, Microsoft Certified",
+    photo: "/instructors/avatar-2.svg",
   },
   {
     id: 3,
@@ -127,6 +64,7 @@ export const instructors = [
     title: "UX Design Mentor",
     bio: "Product designer with experience across fintech and edtech. Teaches design thinking through real client-style briefs.",
     tag: "10+ Years Experience",
+    photo: "/instructors/avatar-3.svg",
   },
 ];
 
@@ -192,23 +130,24 @@ export const nav = [
   { label: "Hire Talent", href: "#" },
 ];
 
-// Dropdown shown under the "Courses" nav item — mirrors codebasics.io's
-// Courses menu (Advanced Courses / Micro Courses / Free Courses).
+// Dropdown shown under the "Courses" nav item — mirrors the LMS backend's
+// course `type` field (Course.type enum: Beginner/Intermediate/Advanced),
+// linking to /courses filtered by that level.
 export const courseMenu = [
   {
-    label: "Advanced Courses",
-    href: "#courses",
-    desc: "Bootcamps with job assistance & mentor support",
+    label: "Beginner",
+    href: "/courses?type=Beginner",
+    desc: "No prior experience needed — start from the fundamentals",
   },
   {
-    label: "Micro Courses",
-    href: "#courses",
-    desc: "Short, focused courses on a single in-demand skill",
+    label: "Intermediate",
+    href: "/courses?type=Intermediate",
+    desc: "For learners with some hands-on experience already",
   },
   {
-    label: "Free Courses",
-    href: "#courses",
-    desc: "Beginner-friendly courses to get started at no cost",
+    label: "Advanced",
+    href: "/courses?type=Advanced",
+    desc: "In-depth, job-ready bootcamps with mentor support",
   },
 ];
 
@@ -262,11 +201,6 @@ export const testimonialsMenu = [
     label: "Student Reviews",
     href: "#testimonials",
     desc: "Ratings and feedback from our learners",
-  },
-  {
-    label: "Success Stories",
-    href: "#success-stories",
-    desc: "Real career transformations from GetUpSkill alumni",
   },
   {
     label: "Video Testimonials",

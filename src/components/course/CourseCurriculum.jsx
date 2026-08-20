@@ -16,6 +16,27 @@ function buildModules(course) {
     ],
   }));
 
+  // Real data from the LMS API, when the backend has it — takes priority
+  // over the generated placeholder content below.
+  const highlightsModule = course.keyFeatures?.length
+    ? [
+        {
+          title: "What This Course Covers",
+          meta: "From the GetUpSkill LMS",
+          deliverable: "A course built around these key features",
+          topics: course.keyFeatures,
+        },
+      ]
+    : [];
+
+  const capstoneTopics = course.learningOutcomes?.length
+    ? course.learningOutcomes
+    : [
+        `End-to-end project using ${course.skills.join(", ")}`,
+        "Code/design review with a mentor",
+        "Portfolio-ready presentation",
+      ];
+
   return [
     {
       title: "Welcome to the Bootcamp",
@@ -28,16 +49,13 @@ function buildModules(course) {
         "Time commitment & system requirements",
       ],
     },
+    ...highlightsModule,
     ...skillModules,
     {
       title: "Capstone Project",
       meta: "6 lectures · 2h 10m",
       deliverable: "A portfolio-ready end-to-end project",
-      topics: [
-        `End-to-end project using ${course.skills.join(", ")}`,
-        "Code/design review with a mentor",
-        "Portfolio-ready presentation",
-      ],
+      topics: capstoneTopics,
     },
     {
       title: "Career Prep & Job Assistance",
@@ -85,7 +103,15 @@ export default function CourseCurriculum({ course }) {
             </h2>
           </div>
           <span className="text-sm text-slate-500">
-            {modules.length} modules · {course.duration}
+            {course.lecturesCount
+              ? [
+                  `${course.lecturesCount} lectures`,
+                  course.assignmentsCount ? `${course.assignmentsCount} assignments` : null,
+                  course.testsCount ? `${course.testsCount} tests` : null,
+                ]
+                  .filter(Boolean)
+                  .join(" · ")
+              : `${modules.length} modules · ${course.duration}`}
           </span>
         </div>
 
