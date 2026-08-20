@@ -1,27 +1,7 @@
-export type Course = {
-  id: string;
-  title: string;
-  category: string;
-  desc: string;
-  longDesc: string;
-  duration: string;
-  mode: "Live" | "Self-Paced";
-  level: "Beginner" | "Intermediate" | "Advanced";
-  rating: number;
-  reviews: string;
-  students: string;
-  price: string;
-  originalPrice?: string;
-  badge?: "Highly Rated" | "In Demand" | "Brand New" | "Bestseller";
-  skills: string[];
-  outcomes: string[]; // job roles this course prepares you for
-  color: string; // accent color for the card
-  image: string; // thumbnail, public/courses/<id>.svg
-};
-
-export const courses: Course[] = [
+export const courses = [
   {
     id: "full-stack-web-dev",
+    code: "FS",
     title: "Full Stack Web Development Bootcamp",
     category: "Development",
     desc: "Master the MERN stack — React, Node.js, Express & MongoDB — by building real, production-grade projects.",
@@ -43,6 +23,7 @@ export const courses: Course[] = [
   },
   {
     id: "data-science-bootcamp",
+    code: "DS",
     title: "Data Science & Machine Learning Bootcamp",
     category: "Data",
     desc: "Learn Python, statistics, ML and data visualization from scratch with hands-on capstone projects.",
@@ -64,6 +45,7 @@ export const courses: Course[] = [
   },
   {
     id: "digital-marketing",
+    code: "DM",
     title: "Digital Marketing Mastery",
     category: "Marketing",
     desc: "SEO, performance ads, content strategy and analytics — grow any brand with data-driven marketing.",
@@ -84,6 +66,7 @@ export const courses: Course[] = [
   },
   {
     id: "ui-ux-design",
+    code: "UX",
     title: "UI/UX Design Foundations",
     category: "Design",
     desc: "Design thinking, wireframing and prototyping in Figma to craft delightful, user-first products.",
@@ -104,6 +87,7 @@ export const courses: Course[] = [
   },
   {
     id: "cloud-devops",
+    code: "CD",
     title: "Cloud & DevOps Engineering",
     category: "Cloud",
     desc: "AWS, Docker, Kubernetes and CI/CD pipelines to deploy and scale applications like a pro.",
@@ -124,6 +108,7 @@ export const courses: Course[] = [
   },
   {
     id: "python-programming",
+    code: "PY",
     title: "Python Programming for Everyone",
     category: "Development",
     desc: "Go from zero to job-ready with core Python, OOP, and automation projects built along the way.",
@@ -144,6 +129,6 @@ export const courses: Course[] = [
   },
 ];
 
-export function getCourse(id: string) {
+export function getCourse(id) {
   return courses.find((c) => c.id === id);
 }

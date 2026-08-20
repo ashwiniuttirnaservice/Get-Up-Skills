@@ -2,17 +2,9 @@
 
 import { useState } from "react";
 import { ChevronDown, PlayCircle, Target } from "lucide-react";
-import type { Course } from "@/data/courses";
 
-type Module = {
-  title: string;
-  meta: string;
-  deliverable: string;
-  topics: string[];
-};
-
-function buildModules(course: Course): Module[] {
-  const skillModules: Module[] = course.skills.map((skill, i) => ({
+function buildModules(course) {
+  const skillModules = course.skills.map((skill, i) => ({
     title: `Mastering ${skill}`,
     meta: `${4 + i} lectures · ${1 + i}h ${20 + i * 5}m`,
     deliverable: `Ship a working ${skill} mini-project`,
@@ -63,7 +55,7 @@ function buildModules(course: Course): Module[] {
 
 /** Spreads modules across the course's stated duration as "Week X" or
  * "Week X-Y" labels, mirroring codebasics.io's week-by-week breakdown. */
-function withWeekLabels(modules: Module[], duration: string) {
+function withWeekLabels(modules, duration) {
   const totalWeeks = Math.max(parseInt(duration, 10) || modules.length, modules.length);
   const span = totalWeeks / modules.length;
   let cursor = 1;
@@ -76,9 +68,9 @@ function withWeekLabels(modules: Module[], duration: string) {
   });
 }
 
-export default function CourseCurriculum({ course }: { course: Course }) {
+export default function CourseCurriculum({ course }) {
   const modules = withWeekLabels(buildModules(course), course.duration);
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <section id="curriculum" className="scroll-mt-28 bg-slate-50 py-16">

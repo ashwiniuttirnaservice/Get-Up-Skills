@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ShieldCheck } from "lucide-react";
 import { courses, getCourse } from "@/data/courses";
@@ -19,11 +18,7 @@ export function generateStaticParams() {
   return courses.map((c) => ({ id: c.id }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }) {
   const { id } = await params;
   const course = getCourse(id);
   if (!course) return {};
@@ -33,11 +28,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function CourseDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function CourseDetailPage({ params }) {
   const { id } = await params;
   const course = getCourse(id);
   if (!course) notFound();

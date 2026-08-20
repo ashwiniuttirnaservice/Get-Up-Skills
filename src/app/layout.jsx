@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,13 +11,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "GetUpSkill — Learn Skills That Get You Hired",
   description:
     "GetUpSkill offers practical, industry-designed courses in web development, data science, design and marketing to help you build a career you love.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }) {
   return (
     <html
       lang="en"

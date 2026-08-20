@@ -1,6 +1,4 @@
-import type { Course } from "@/data/courses";
-
-export default function EnrollBar({ course }: { course: Course }) {
+export default function EnrollBar({ course }) {
   return (
     <div className="sticky bottom-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur-md lg:hidden">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">

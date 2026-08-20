@@ -1,9 +1,6 @@
 import { Check, Minus, X } from "lucide-react";
-import type { Course } from "@/data/courses";
 
-type Cell = boolean | "partial";
-
-const rows: { label: string; self: Cell; others: Cell; getup: Cell }[] = [
+const rows = [
   { label: "Live mentor-led sessions", self: false, others: "partial", getup: true },
   { label: "Real, production-grade projects", self: false, others: true, getup: true },
   { label: "1:1 doubt resolution & code review", self: false, others: "partial", getup: true },
@@ -13,13 +10,13 @@ const rows: { label: string; self: Cell; others: Cell; getup: Cell }[] = [
   { label: "Certificate of completion", self: false, others: true, getup: true },
 ];
 
-function Cell({ value }: { value: boolean | "partial" }) {
+function Cell({ value }) {
   if (value === true) return <Check size={18} className="mx-auto text-emerald-500" />;
   if (value === "partial") return <Minus size={18} className="mx-auto text-amber-500" />;
   return <X size={18} className="mx-auto text-slate-300" />;
 }
 
-export default function WhyDifferent({ course }: { course: Course }) {
+export default function WhyDifferent({ course }) {
   return (
     <section className="bg-slate-50 py-16">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

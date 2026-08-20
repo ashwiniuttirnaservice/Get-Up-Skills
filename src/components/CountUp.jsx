@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 /** Splits a display string like "8,000+", "4.8/5", "95%" into its
  * animatable numeric part plus the surrounding prefix/suffix text. */
-function parseValue(str: string) {
+function parseValue(str) {
   const match = str.match(/[\d,]+(\.\d+)?/);
   if (!match) {
     return { prefix: "", number: 0, decimals: 0, suffix: str, hasComma: false };
@@ -19,16 +19,8 @@ function parseValue(str: string) {
   return { prefix, number, decimals, suffix, hasComma };
 }
 
-export default function CountUp({
-  value,
-  duration = 1600,
-  className,
-}: {
-  value: string;
-  duration?: number;
-  className?: string;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
+export default function CountUp({ value, duration = 1600, className }) {
+  const ref = useRef(null);
   const started = useRef(false);
   const { prefix, number, decimals, suffix, hasComma } = parseValue(value);
   const [display, setDisplay] = useState(decimals > 0 ? (0).toFixed(decimals) : "0");
@@ -43,7 +35,7 @@ export default function CountUp({
         started.current = true;
 
         const start = performance.now();
-        const tick = (now: number) => {
+        const tick = (now) => {
           const progress = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
           const current = number * eased;

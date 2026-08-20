@@ -9,9 +9,8 @@ import {
   Star,
   Users,
 } from "lucide-react";
-import type { Course } from "@/data/courses";
 
-function discountPercent(price: string, original?: string) {
+function discountPercent(price, original) {
   if (!original) return null;
   const p = Number(price.replace(/[^\d]/g, ""));
   const o = Number(original.replace(/[^\d]/g, ""));
@@ -19,7 +18,7 @@ function discountPercent(price: string, original?: string) {
   return Math.round(((o - p) / o) * 100);
 }
 
-export default function CourseHero({ course }: { course: Course }) {
+export default function CourseHero({ course }) {
   const discount = discountPercent(course.price, course.originalPrice);
 
   const badges = [
