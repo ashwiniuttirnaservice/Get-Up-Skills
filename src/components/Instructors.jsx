@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Quote } from "lucide-react";
 import { instructors as fallbackInstructors } from "@/data/site";
 import { getTrainers, trainerPhotoUrl } from "@/lib/api";
+import Reveal from "./Reveal";
 
 // Same brand palette used across course cards/highlights — cycled per
 // instructor so the grid feels colorful without introducing new colors.
@@ -48,14 +49,14 @@ export default async function Instructors() {
   return (
     <section id="instructors" className="scroll-mt-28 bg-slate-50 py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-[#53B8EC]">
             Practitioners Who Teach
           </span>
           <h2 className="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
             Learn from Industry Experts
           </h2>
-        </div>
+        </Reveal>
 
         {/* Horizontal, quote-led layout — deliberately different from the
             banner-topped CourseCard grid used elsewhere on this page. */}
@@ -63,35 +64,36 @@ export default async function Instructors() {
           {instructors.map((ins, i) => {
             const accent = ACCENTS[i % ACCENTS.length];
             return (
-              <div
-                key={ins.id}
-                className="group flex gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition-all duration-300 hover:shadow-xl hover:ring-transparent"
-                style={{ "--accent": accent }}
-              >
-                {/* Blob-shaped photo, not a plain circle — visually distinct
-                    from the course cards' rectangular banner images. */}
+              <Reveal key={ins.id} delay={(i % 2) * 100}>
                 <div
-                  className="relative h-24 w-24 shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-105"
-                  style={{ borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%" }}
+                  className="group flex gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition-all duration-300 hover:shadow-xl hover:ring-transparent"
+                  style={{ "--accent": accent }}
                 >
-                  <Image src={ins.photo} alt={ins.name} fill className="object-cover" sizes="96px" />
-                </div>
-
-                <div className="min-w-0 flex-1">
-                  <Quote size={20} className="opacity-70" style={{ color: accent }} fill={accent} />
-                  <h3 className="mt-1 truncate font-bold text-slate-900">{ins.name}</h3>
-                  <p className="text-sm font-semibold" style={{ color: accent }}>
-                    {ins.title}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{ins.bio}</p>
-                  <span
-                    className="mt-3 inline-block rounded-full px-3 py-1 text-xs font-semibold"
-                    style={{ backgroundColor: `${accent}1a`, color: accent }}
+                  {/* Blob-shaped photo, not a plain circle — visually distinct
+                      from the course cards' rectangular banner images. */}
+                  <div
+                    className="relative h-24 w-24 shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-105"
+                    style={{ borderRadius: "42% 58% 63% 37% / 45% 40% 60% 55%" }}
                   >
-                    {ins.tag}
-                  </span>
+                    <Image src={ins.photo} alt={ins.name} fill className="object-cover" sizes="96px" />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <Quote size={20} className="opacity-70" style={{ color: accent }} fill={accent} />
+                    <h3 className="mt-1 truncate font-bold text-slate-900">{ins.name}</h3>
+                    <p className="text-sm font-semibold" style={{ color: accent }}>
+                      {ins.title}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{ins.bio}</p>
+                    <span
+                      className="mt-3 inline-block rounded-full px-3 py-1 text-xs font-semibold"
+                      style={{ backgroundColor: `${accent}1a`, color: accent }}
+                    >
+                      {ins.tag}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

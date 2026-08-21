@@ -1,6 +1,7 @@
 import { ArrowRight, PlayCircle, Sparkles } from "lucide-react";
 import CodeShowcase from "./CodeShowcase";
 import CountUp from "./CountUp";
+import Reveal from "./Reveal";
 
 export default function Hero() {
   return (
@@ -10,7 +11,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-[#E9577C]/20 blur-3xl" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-14">
-        <div>
+        <Reveal delay={0}>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-[#485DAC]/10 px-4 py-1.5 text-sm font-semibold text-[#485DAC]">
             <Sparkles size={14} /> New batch starting soon — limited seats
           </span>
@@ -29,14 +30,14 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#courses"
-              className="inline-flex items-center gap-2 rounded-md bg-[#485DAC] px-6 py-3 font-semibold text-white shadow-lg shadow-[#485DAC]/25 transition hover:bg-[#3a4b8a]"
+              className="group inline-flex items-center gap-2 rounded-md bg-[#485DAC] px-6 py-3 font-semibold text-white shadow-lg shadow-[#485DAC]/25 transition hover:bg-[#3a4b8a] hover:shadow-xl active:scale-95"
             >
               Explore Courses
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#why-us"
-              className="inline-flex items-center gap-2 rounded-md px-6 py-3 font-semibold text-slate-700 transition hover:text-[#485DAC]"
+              className="inline-flex items-center gap-2 rounded-md px-6 py-3 font-semibold text-slate-700 transition hover:text-[#485DAC] active:scale-95"
             >
               <PlayCircle size={20} />
               How it works
@@ -57,9 +58,11 @@ export default function Hero() {
               Average Rating
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        <CodeShowcase />
+        <Reveal delay={150}>
+          <CodeShowcase />
+        </Reveal>
       </div>
     </section>
   );

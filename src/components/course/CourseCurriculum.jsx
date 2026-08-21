@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, PlayCircle, Target } from "lucide-react";
+import { BookOpen, ChevronDown, Layers, ListChecks, PlayCircle, Target } from "lucide-react";
+import Reveal from "../Reveal";
 
 function buildModules(course) {
   const skillModules = course.skills.map((skill, i) => ({
@@ -71,6 +72,48 @@ function buildModules(course) {
   ];
 }
 
+function chunk(arr, size) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+/** Converts the real modules from GET /api/courses/:id/curriculum (backend)
+ * into the shape this section renders — actual lecture titles, not
+ * generated text. */
+function buildLiveModules(liveModules) {
+  // The backend's flat "Course Content" fallback (no Phase/Week/Chapter data
+  // yet) — split it into week-sized chunks so it doesn't render as one huge
+  // list.
+  if (liveModules.length === 1 && liveModules[0].title === "Course Content") {
+    const groups = chunk(liveModules[0].lectures, 8);
+    return groups.map((group, i) => ({
+      title: `Week ${i + 1}`,
+      weekLabel: `Week ${i + 1}`,
+      meta: `${group.length} lectures`,
+      deliverable: "Watch all lectures in this week",
+      topics: group.map((l) => l.title),
+    }));
+  }
+
+  return liveModules.map((mod) => {
+    const lectureTitles = mod.lectures.map((l) => l.title);
+    const meta = [
+      mod.lectures.length ? `${mod.lectures.length} lectures` : null,
+      mod.assignments.length ? `${mod.assignments.length} assignments` : null,
+    ]
+      .filter(Boolean)
+      .join(" · ");
+    return {
+      title: mod.title,
+      weekLabel: mod.weekLabel || mod.title,
+      meta: meta || "From the GetUpSkill LMS",
+      deliverable: mod.assignments[0]?.title || "Complete this module's lectures",
+      topics: mod.topics?.length ? mod.topics : lectureTitles,
+    };
+  });
+}
+
 /** Spreads modules across the course's stated duration as "Week X" or
  * "Week X-Y" labels, mirroring codebasics.io's week-by-week breakdown. */
 function withWeekLabels(modules, duration) {
@@ -86,14 +129,39 @@ function withWeekLabels(modules, duration) {
   });
 }
 
-export default function CourseCurriculum({ course }) {
-  const modules = withWeekLabels(buildModules(course), course.duration);
+export default function CourseCurriculum({ course, liveModules }) {
+  const hasLive = liveModules?.length > 0;
+  const modules = hasLive
+    ? buildLiveModules(liveModules)
+    : withWeekLabels(buildModules(course), course.duration);
   const [openIndex, setOpenIndex] = useState(0);
 
+  const totalTopics = modules.reduce((sum, m) => sum + m.topics.length, 0);
+  const statChips = course.lecturesCount
+    ? [
+        { icon: PlayCircle, label: `${course.lecturesCount} lectures` },
+        course.assignmentsCount ? { icon: ListChecks, label: `${course.assignmentsCount} assignments` } : null,
+        { icon: Layers, label: `${modules.length} modules` },
+      ].filter(Boolean)
+    : [
+        { icon: BookOpen, label: `${modules.length} modules` },
+        { icon: PlayCircle, label: `${totalTopics} lessons` },
+        { icon: Layers, label: course.duration },
+      ];
+
   return (
-    <section id="curriculum" className="scroll-mt-28 bg-slate-50 py-16">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-2">
+    <section id="curriculum" className="relative scroll-mt-28 overflow-hidden bg-slate-50 py-16">
+      {/* Faint dot-pattern texture, matching the hero's decorative language */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.4]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(15,23,42,0.06) 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <span className="text-sm font-semibold uppercase tracking-wider text-[#485DAC]">
               Week by Week
@@ -102,81 +170,110 @@ export default function CourseCurriculum({ course }) {
               Curriculum
             </h2>
           </div>
-          <span className="text-sm text-slate-500">
-            {course.lecturesCount
-              ? [
-                  `${course.lecturesCount} lectures`,
-                  course.assignmentsCount ? `${course.assignmentsCount} assignments` : null,
-                  course.testsCount ? `${course.testsCount} tests` : null,
-                ]
-                  .filter(Boolean)
-                  .join(" · ")
-              : `${modules.length} modules · ${course.duration}`}
-          </span>
-        </div>
+
+          {/* Stat chips replace the plain text summary */}
+          <div className="flex flex-wrap gap-2">
+            {statChips.map((chip) => (
+              <span
+                key={chip.label}
+                className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm"
+              >
+                <chip.icon size={13} style={{ color: course.color }} />
+                {chip.label}
+              </span>
+            ))}
+          </div>
+        </Reveal>
 
         <div className="mt-8 flex flex-col">
           {modules.map((mod, i) => {
             const open = openIndex === i;
             const isLast = i === modules.length - 1;
             return (
-              <div key={mod.title} className="relative flex gap-4">
-                {/* Timeline rail */}
-                <div className="flex flex-col items-center">
-                  <span
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                    style={{ backgroundColor: course.color }}
-                  >
-                    {i + 1}
-                  </span>
-                  {!isLast && <span className="w-px flex-1 bg-slate-200" />}
-                </div>
+              <Reveal key={`${mod.title}-${i}`} delay={Math.min(i * 60, 480)}>
+                <div className="relative flex gap-4">
+                  {/* Timeline rail */}
+                  <div className="flex flex-col items-center">
+                    <span
+                      className={`relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white transition-transform duration-300 ${
+                        open ? "scale-110" : ""
+                      }`}
+                      style={{ backgroundImage: `linear-gradient(135deg, ${course.color}, #0f172a)` }}
+                    >
+                      {open && (
+                        <span
+                          className="absolute inset-0 animate-ping rounded-full opacity-40"
+                          style={{ backgroundColor: course.color }}
+                        />
+                      )}
+                      <span className="relative">{i + 1}</span>
+                    </span>
+                    {!isLast && <span className="w-px flex-1 bg-slate-200" />}
+                  </div>
 
-                <div className="mb-4 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                  <button
-                    onClick={() => setOpenIndex(open ? null : i)}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-                  >
-                    <div>
-                      <span
-                        className="text-xs font-bold uppercase tracking-wide"
-                        style={{ color: course.color }}
-                      >
-                        {mod.weekLabel}
-                      </span>
-                      <div className="font-semibold text-slate-900">{mod.title}</div>
-                      <div className="mt-0.5 text-xs text-slate-500">{mod.meta}</div>
-                    </div>
-                    <ChevronDown
-                      size={18}
-                      className={`shrink-0 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`}
-                    />
-                  </button>
                   <div
-                    className={`grid overflow-hidden px-5 transition-all duration-300 ${
-                      open ? "grid-rows-[1fr] pb-4 opacity-100" : "grid-rows-[0fr] opacity-0"
+                    className={`mb-4 flex-1 overflow-hidden rounded-xl border bg-white shadow-sm transition-all duration-300 ${
+                      open ? "shadow-lg" : "hover:-translate-y-0.5 hover:shadow-md"
                     }`}
+                    style={{ borderColor: open ? course.color : "#e2e8f0" }}
                   >
-                    <div className="min-h-0 border-t border-slate-100 pt-3">
-                      <ul className="space-y-2 text-sm text-slate-600">
-                        {mod.topics.map((t) => (
-                          <li key={t} className="flex items-start gap-2">
-                            <PlayCircle size={14} className="mt-0.5 shrink-0 text-[#485DAC]" />
-                            {t}
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="mt-3 flex items-start gap-2 rounded-lg bg-slate-50 p-3 text-xs text-slate-600">
-                        <Target size={14} className="mt-0.5 shrink-0 text-emerald-500" />
-                        <span>
-                          <strong className="font-semibold text-slate-800">Deliverable:</strong>{" "}
-                          {mod.deliverable}
+                    <button
+                      onClick={() => setOpenIndex(open ? null : i)}
+                      className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                    >
+                      <div>
+                        <span
+                          className="text-xs font-bold uppercase tracking-wide"
+                          style={{ color: course.color }}
+                        >
+                          {mod.weekLabel}
                         </span>
+                        <div className="font-semibold text-slate-900">{mod.title}</div>
+                        <div className="mt-0.5 text-xs text-slate-500">{mod.meta}</div>
+                      </div>
+                      <span
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors"
+                        style={{ backgroundColor: open ? `${course.color}1a` : "transparent" }}
+                      >
+                        <ChevronDown
+                          size={18}
+                          className="shrink-0 transition-transform duration-300"
+                          style={{
+                            color: open ? course.color : "#64748b",
+                            transform: open ? "rotate(180deg)" : "none",
+                          }}
+                        />
+                      </span>
+                    </button>
+                    <div
+                      className={`grid overflow-hidden px-5 transition-all duration-300 ${
+                        open ? "grid-rows-[1fr] pb-4 opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="min-h-0 border-t border-slate-100 pt-3">
+                        <ul className="space-y-2 text-sm text-slate-600">
+                          {mod.topics.map((t, ti) => (
+                            <li key={ti} className="flex items-start gap-2">
+                              <PlayCircle size={14} className="mt-0.5 shrink-0" style={{ color: course.color }} />
+                              {t}
+                            </li>
+                          ))}
+                        </ul>
+                        <div
+                          className="mt-3 flex items-start gap-2 rounded-lg p-3 text-xs text-slate-600"
+                          style={{ backgroundColor: `${course.color}0d` }}
+                        >
+                          <Target size={14} className="mt-0.5 shrink-0 text-emerald-500" />
+                          <span>
+                            <strong className="font-semibold text-slate-800">Deliverable:</strong>{" "}
+                            {mod.deliverable}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

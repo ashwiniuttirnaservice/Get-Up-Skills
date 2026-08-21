@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { ShieldCheck } from "lucide-react";
-import { getCourseById } from "@/lib/api";
+import { getCourseById, getCourseCurriculum } from "@/lib/api";
 import { toCardCourse } from "@/lib/mapApiCourse";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -28,7 +28,10 @@ export async function generateMetadata({ params }) {
 // just fed by a real getCourseById() API call instead of the static catalog.
 export default async function LiveCourseDetailPage({ params }) {
   const { id } = await params;
-  const apiCourse = await getCourseById(id);
+  const [apiCourse, curriculum] = await Promise.all([
+    getCourseById(id),
+    getCourseCurriculum(id),
+  ]);
   if (!apiCourse) notFound();
 
   const course = toCardCourse(apiCourse);
@@ -42,7 +45,7 @@ export default async function LiveCourseDetailPage({ params }) {
       <main>
         <CourseHero course={course} />
         <CourseHighlights />
-        <CourseCurriculum course={course} />
+        <CourseCurriculum course={course} liveModules={curriculum?.modules} />
         <JobAssistance course={course} />
 
         <section className="py-4">
