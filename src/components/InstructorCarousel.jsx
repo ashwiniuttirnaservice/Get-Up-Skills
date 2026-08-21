@@ -163,13 +163,6 @@ function TrainerCard({
           {trainer.name}
         </h3>
 
-<<<<<<< HEAD
-        {/* =================================================
-            TRAINER TITLE
-        ============================================= */}
-=======
-        {/* Title */}
->>>>>>> eed0ec86cb0849a336b75bb1dac78c239a899d43
 
         <p
           className="mt-1.5 truncate text-[11px] font-semibold"

@@ -1,6 +1,6 @@
+
 "use client";
 
-import { useEffect } from "react";
 import {
   ArrowRight,
   CalendarDays,
@@ -122,7 +122,7 @@ const upcomingWebinars = [
 ];
 
 /* =========================================================
-   DUMMY WORKSHOPS DATA
+   WORKSHOPS
 ========================================================= */
 
 const workshopsData = [
@@ -159,7 +159,7 @@ const workshopsData = [
 ];
 
 /* =========================================================
-   DUMMY HACKATHONS DATA
+   HACKATHONS
 ========================================================= */
 
 const hackathonsData = [
@@ -190,6 +190,10 @@ const hackathonsData = [
     status: "Coming Soon",
   },
 ];
+
+/* =========================================================
+   PAST WEBINARS
+========================================================= */
 
 const pastWebinars = [
   {
@@ -239,7 +243,7 @@ const categories = [
 ];
 
 /* =========================================================
-   FEATURE BENEFITS
+   BENEFITS
 ========================================================= */
 
 const benefits = [
@@ -274,350 +278,432 @@ const benefits = [
 ];
 
 /* =========================================================
-   WEBINAR PAGE
+   PAGE
 ========================================================= */
 
 export default function WebinarsPage() {
-  // Handle cross-page hash routing/scrolling when users navigate from another page menu
-  useEffect(() => {
-    if (window.location.hash) {
-      const element = document.getElementById(window.location.hash.substring(1));
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth" });
-        }, 150);
-      }
-    }
-  }, []);
-
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f8fbff]">
+    <main className="relative min-h-screen overflow-hidden bg-[#f4f7fc]">
 
       {/* =====================================================
-          GLOBAL BACKGROUND
+          GLOBAL AMBIENT BACKGROUND
       ====================================================== */}
 
       <div className="pointer-events-none fixed inset-0 -z-20 overflow-hidden">
+        <div className="absolute -left-40 top-0 h-[450px] w-[450px] rounded-full bg-sky-200/35 blur-[120px]" />
 
-        <div
-          className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full opacity-40 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(83,184,236,0.30), transparent 70%)",
-          }}
-        />
+        <div className="absolute -right-40 top-[400px] h-[550px] w-[550px] rounded-full bg-indigo-200/25 blur-[130px]" />
 
-        <div
-          className="absolute -right-40 top-[500px] h-[600px] w-[600px] rounded-full opacity-35 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(233,87,124,0.20), transparent 70%)",
-          }}
-        />
-
-        <div
-          className="absolute bottom-0 left-[30%] h-[500px] w-[700px] rounded-full opacity-30 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(ellipse, rgba(193,59,232,0.18), transparent 70%)",
-          }}
-        />
-
+        <div className="absolute bottom-0 left-1/4 h-[400px] w-[600px] rounded-full bg-pink-200/20 blur-[130px]" />
       </div>
 
       {/* =====================================================
-          HERO (3D PERSPECTIVE & ANIMATED LOOK)
+          HERO SECTION
+          COMPACT / MODERN / NO LARGE BOTTOM GAP
       ====================================================== */}
 
-      <section className="relative overflow-hidden px-4 pb-20 pt-16 sm:px-6 sm:pt-20 lg:px-8 lg:pb-28">
+   {/* =========================================================
+    GETUPSKILL WEBINAR HERO — COMPLETELY NEW DESIGN
+========================================================= */}
+<section className="relative overflow-hidden bg-white px-4 pb-14 pt-8 sm:px-6 sm:pb-16 sm:pt-12 lg:px-8 lg:pb-20 lg:pt-14">
+  {/* Background decoration */}
+  <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-sky-100/70 blur-3xl" />
+    <div className="absolute right-[-180px] top-20 h-[500px] w-[500px] rounded-full bg-indigo-100/60 blur-3xl" />
+    <div className="absolute bottom-[-200px] left-1/3 h-[400px] w-[500px] rounded-full bg-pink-100/50 blur-3xl" />
 
-        {/* Dynamic 3D Hero Glow Orbs */}
-        <div
-          className="absolute left-1/2 top-1/4 h-[450px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 blur-[120px]"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(83,184,236,0.25), rgba(72,93,172,0.20), rgba(233,87,124,0.18))",
-          }}
-        />
+    {/* Grid pattern */}
+    <div
+      className="absolute inset-0 opacity-[0.035]"
+      style={{
+        backgroundImage:
+          "linear-gradient(#0f172a 1px, transparent 1px), linear-gradient(90deg, #0f172a 1px, transparent 1px)",
+        backgroundSize: "45px 45px",
+      }}
+    />
+  </div>
 
-        {/* Floating 3D Depth Elements */}
-        <div className="absolute left-[5%] top-20 hidden h-24 w-24 animate-pulse rounded-3xl border border-white/80 bg-gradient-to-br from-white/80 to-sky-100/40 shadow-[0_20px_50px_rgba(80,120,180,0.15)] backdrop-blur-2xl lg:block transform -rotate-12 hover:rotate-0 transition-transform duration-500" />
+  <div className="relative mx-auto max-w-7xl">
 
-        <div className="absolute right-[5%] top-32 hidden h-28 w-28 animate-bounce rounded-full border border-white/90 bg-gradient-to-tr from-white/70 to-pink-100/40 shadow-[0_20px_50px_rgba(200,100,150,0.12)] backdrop-blur-2xl lg:block duration-1000" />
+    {/* =====================================================
+        TOP EVENT NAVIGATION STRIP
+    ====================================================== */}
+    <div className="mb-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3 sm:px-5">
+      <div className="flex items-center gap-3">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-md shadow-indigo-600/20">
+          <Play className="h-4 w-4 fill-current" />
+        </div>
 
-        <div className="relative mx-auto max-w-7xl">
+        <div>
+          <p className="text-xs font-black text-slate-900">
+            GetUpSkill Live
+          </p>
+          <p className="text-[10px] text-slate-500">
+            Learn directly from industry experts
+          </p>
+        </div>
+      </div>
 
-          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+      <div className="flex items-center gap-4 text-[10px] font-bold text-slate-500 sm:gap-6">
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          Live Events
+        </span>
 
-            {/* =================================================
-                HERO CONTENT (3D Typography & Interactive feel)
-            ================================================== */}
+        <span className="hidden h-4 w-px bg-slate-200 sm:block" />
 
-            <div className="text-center lg:text-left [perspective:1000px]">
+        <span className="hidden sm:inline">
+          Expert Mentors
+        </span>
 
-              {/* Badge */}
+        <span className="hidden h-4 w-px bg-slate-200 sm:block" />
 
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/75 px-4 py-2 text-[11px] font-bold tracking-[0.14em] text-slate-700 shadow-[0_10px_30px_rgba(70,100,160,0.12)] backdrop-blur-xl transform transition-transform hover:scale-105">
+        <span className="hidden sm:inline">
+          Career Sessions
+        </span>
+      </div>
+    </div>
 
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-red-500" />
-                </span>
+    {/* =====================================================
+        MAIN HERO
+    ====================================================== */}
+    <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
 
-                NEXT-GEN LIVE LEARNING
+      {/* =================================================
+          LEFT CONTENT
+      ================================================= */}
+      <div className="relative z-10">
 
-                <Sparkles className="h-3.5 w-3.5 text-sky-400" />
+        {/* Small label */}
+        <div className="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-3 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-indigo-600">
+          <CalendarDays className="h-3.5 w-3.5" />
+          Upcoming Learning Events
+        </div>
 
-              </div>
+        {/* Heading */}
+        <h1 className="mt-6 max-w-3xl text-4xl font-black leading-[1.03] tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl xl:text-[70px]">
+          Learn from the
+          <br />
 
-              {/* Heading with 3D shadow depth */}
+          <span className="relative inline-block">
+            people building
+            <span className="absolute -bottom-1 left-0 h-2 w-full rounded-full bg-sky-200/70" />
+          </span>
 
-              <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-[-0.05em] text-[#08123d] sm:text-5xl lg:text-6xl xl:text-[72px] drop-shadow-sm">
+          <br />
 
-                Learn Live.
+          <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">
+            what's next.
+          </span>
+        </h1>
 
-                <br />
+        {/* Description */}
+        <p className="mt-6 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+          Join live webinars, practical workshops and tech events designed
+          to help you learn new skills, connect with experts and accelerate
+          your career.
+        </p>
 
-                <span className="bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] bg-clip-text text-transparent drop-shadow-[0_10px_20px_rgba(72,93,172,0.2)]">
-                  Grow Faster.
-                </span>
+        {/* CTA */}
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="#upcoming"
+            className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-slate-950 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-slate-950/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-indigo-600"
+          >
+            Explore Live Events
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
 
-              </h1>
+          <a
+            href="#webinars"
+            className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-indigo-200 hover:text-indigo-600"
+          >
+            <Play className="h-4 w-4 fill-current text-indigo-600" />
+            Watch Recordings
+          </a>
+        </div>
 
-              {/* Description */}
+        {/* Trust / audience */}
+        <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <div className="flex -space-x-2">
+            {[
+              "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80",
+              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
+              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
+              "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
+            ].map((avatar, index) => (
+              <img
+                key={index}
+                src={avatar}
+                alt="Learner"
+                className="h-8 w-8 rounded-full border-2 border-white object-cover"
+              />
+            ))}
+          </div>
 
-              <p className="mx-auto mt-6 max-w-xl text-[15px] leading-7 text-slate-500 sm:text-base lg:mx-0">
+          <div>
+            <div className="flex items-center gap-1">
+              <span className="text-sm font-black text-slate-900">
+                10K+
+              </span>
 
-                Immerse yourself in interactive 3D webinars, hands-on weekend workshops, and high-stakes coding hackathons engineered to accelerate your tech career.
-
-              </p>
-
-              {/* Buttons */}
-
-              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
-
-                <a
-                  href="#upcoming"
-                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-[#485DAC] px-7 py-3.5 text-sm font-bold text-white shadow-[0_15px_35px_rgba(72,93,172,0.30)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(72,93,172,0.38)] active:translate-y-0"
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                  Explore Webinars
-
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-
-                </a>
-
-                <a
-                  href="#webinars"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/90 bg-white/70 px-7 py-3.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(70,90,140,0.12)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white"
-                >
-                  <Play className="h-4 w-4 fill-current text-[#485DAC]" />
-
-                  Watch Recordings
-
-                </a>
-
-              </div>
-
-              {/* Small Stats */}
-
-              <div className="mt-10 flex flex-wrap justify-center gap-6 text-left lg:justify-start border-t border-slate-200/60 pt-6">
-
-                <div>
-                  <p className="text-2xl font-extrabold text-[#08123d]">
-                    50+
-                  </p>
-                  <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                    Live Sessions
-                  </p>
-                </div>
-
-                <div className="h-10 w-px bg-slate-200" />
-
-                <div>
-                  <p className="text-2xl font-extrabold text-[#08123d]">
-                    25+
-                  </p>
-                  <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                    Industry Experts
-                  </p>
-                </div>
-
-                <div className="h-10 w-px bg-slate-200" />
-
-                <div>
-                  <p className="text-2xl font-extrabold text-[#08123d]">
-                    10K+
-                  </p>
-                  <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                    Learners
-                  </p>
-                </div>
-
-              </div>
-
+              <span className="text-xs font-semibold text-slate-500">
+                learners
+              </span>
             </div>
 
-            {/* =================================================
-                FEATURED WEBINAR HERO CARD (3D Tilted Glass UI)
-            ================================================== */}
+            <p className="text-[10px] text-slate-400">
+              learning with GetUpSkill
+            </p>
+          </div>
 
-            <div className="relative [perspective:1200px]">
+          <div className="hidden h-8 w-px bg-slate-200 sm:block" />
 
-              {/* Background Multi-layer Glow */}
-              <div className="absolute -inset-8 rounded-[40px] bg-gradient-to-tr from-sky-300/30 via-purple-300/20 to-pink-300/30 blur-3xl transform -rotate-3" />
+          <div>
+            <p className="text-sm font-black text-slate-900">
+              50+
+            </p>
+            <p className="text-[10px] text-slate-400">
+              expert-led sessions
+            </p>
+          </div>
+        </div>
+      </div>
 
-              <div className="group relative overflow-hidden rounded-[32px] border border-white/90 bg-white/65 p-3.5 shadow-[0_35px_90px_rgba(70,90,160,0.20)] backdrop-blur-2xl transition-transform duration-700 hover:rotate-1 hover:scale-[1.02]">
+      {/* =================================================
+          RIGHT EVENT EXPERIENCE
+      ================================================= */}
+      <div className="relative">
 
-                {/* Image */}
+        {/* Decorative circles */}
+        <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full border border-indigo-200" />
+        <div className="absolute -bottom-8 -left-8 h-20 w-20 rounded-full border border-pink-200" />
 
-                <div className="relative h-[260px] overflow-hidden rounded-[24px] sm:h-[310px]">
+        {/* Main event panel */}
+        <div className="relative overflow-hidden rounded-[30px] border border-slate-200 bg-slate-950 p-3 shadow-[0_30px_80px_rgba(15,23,42,0.18)]">
 
-                  <img
-                    src={upcomingWebinars[0].image}
-                    alt={upcomingWebinars[0].title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+          {/* Top browser-like header */}
+          <div className="flex items-center justify-between px-3 py-3">
+            <div className="flex items-center gap-1.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+            </div>
 
-                  {/* Overlay */}
+            <div className="rounded-full bg-white/10 px-3 py-1 text-[9px] font-bold text-slate-300">
+              GETUPSKILL / LIVE
+            </div>
+          </div>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#101638]/85 via-[#101638]/20 to-transparent" />
+          {/* Event image */}
+          <div className="relative overflow-hidden rounded-[22px]">
+            <img
+              src={upcomingWebinars[0].image}
+              alt={upcomingWebinars[0].title}
+              className="h-[260px] w-full object-cover sm:h-[300px]"
+            />
 
-                  {/* Live Badge */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
 
-                  <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-red-500/95 px-3.5 py-1.5 text-[10px] font-extrabold tracking-widest text-white shadow-lg backdrop-blur-md">
+            {/* Live badge */}
+            <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-red-500 px-3 py-1.5 text-[9px] font-black uppercase tracking-wider text-white shadow-lg">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+              Live Event
+            </div>
 
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
+            {/* Category */}
+            <div className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[9px] font-bold text-slate-800 backdrop-blur-md">
+              {upcomingWebinars[0].category}
+            </div>
 
-                    LIVE EVENT
+            {/* Event content */}
+            <div className="absolute bottom-5 left-5 right-5">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-sky-300">
+                Featured Session
+              </p>
 
-                  </div>
+              <h3 className="mt-2 max-w-lg text-xl font-black leading-tight text-white sm:text-2xl">
+                {upcomingWebinars[0].title}
+              </h3>
+            </div>
+          </div>
 
-                  {/* Bottom Image Text */}
+          {/* Event information */}
+          <div className="grid grid-cols-2 gap-2 p-2 pt-3 sm:grid-cols-4">
 
-                  <div className="absolute bottom-5 left-5 right-5 text-white">
+            <div className="rounded-xl bg-white/5 p-3">
+              <CalendarDays className="h-4 w-4 text-sky-400" />
+              <p className="mt-2 text-[9px] font-semibold text-slate-500">
+                DATE
+              </p>
+              <p className="mt-0.5 text-[10px] font-bold text-white">
+                Aug 28
+              </p>
+            </div>
 
-                    <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-sky-300">
-                      Featured Masterclass
-                    </p>
+            <div className="rounded-xl bg-white/5 p-3">
+              <Clock3 className="h-4 w-4 text-purple-400" />
+              <p className="mt-2 text-[9px] font-semibold text-slate-500">
+                TIME
+              </p>
+              <p className="mt-0.5 text-[10px] font-bold text-white">
+                7:00 PM
+              </p>
+            </div>
 
-                    <h2 className="mt-1 text-2xl font-black leading-tight sm:text-3xl drop-shadow-md">
-                      {upcomingWebinars[0].title}
-                    </h2>
+            <div className="rounded-xl bg-white/5 p-3">
+              <Users className="h-4 w-4 text-pink-400" />
+              <p className="mt-2 text-[9px] font-semibold text-slate-500">
+                FORMAT
+              </p>
+              <p className="mt-0.5 text-[10px] font-bold text-white">
+                Live Q&A
+              </p>
+            </div>
 
-                  </div>
-
-                </div>
-
-                {/* Content */}
-
-                <div className="px-3 pb-3 pt-5">
-
-                  <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] font-medium text-slate-500">
-
-                    <span className="inline-flex items-center gap-1.5">
-                      <CalendarDays className="h-4 w-4 text-[#53B8EC]" />
-                      {upcomingWebinars[0].date}
-                    </span>
-
-                    <span className="inline-flex items-center gap-1.5">
-                      <Clock3 className="h-4 w-4 text-[#485DAC]" />
-                      {upcomingWebinars[0].time}
-                    </span>
-
-                    <span className="inline-flex items-center gap-1.5">
-                      <Users className="h-4 w-4 text-[#E9577C]" />
-                      Interactive Q&A
-                    </span>
-
-                  </div>
-
-                  <div className="mt-5 flex items-center justify-between gap-4 border-t border-slate-100 pt-4">
-
-                    <div>
-
-                      <p className="text-[13px] font-bold text-slate-900">
-                        {upcomingWebinars[0].speaker}
-                      </p>
-
-                      <p className="mt-0.5 text-[11px] text-slate-400 font-medium">
-                        {upcomingWebinars[0].role}
-                      </p>
-
-                    </div>
-
-                    <button
-                      type="button"
-                      className="rounded-full bg-[#485DAC] px-5 py-2.5 text-[12px] font-bold text-white shadow-[0_8px_20px_rgba(72,93,172,0.25)] transition-all hover:-translate-y-0.5 hover:shadow-lg"
-                    >
-                      Register Now
-                    </button>
-
-                  </div>
-
-                </div>
-
-              </div>
-
+            <div className="rounded-xl bg-white/5 p-3">
+              <Zap className="h-4 w-4 text-yellow-400" />
+              <p className="mt-2 text-[9px] font-semibold text-slate-500">
+                DURATION
+              </p>
+              <p className="mt-0.5 text-[10px] font-bold text-white">
+                90 Min
+              </p>
             </div>
 
           </div>
 
+          {/* Speaker + action */}
+          <div className="mt-2 flex items-center justify-between gap-4 border-t border-white/10 px-3 py-4">
+
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=150&q=80"
+                  alt={upcomingWebinars[0].speaker}
+                  className="h-11 w-11 rounded-full border-2 border-white/10 object-cover"
+                />
+
+                <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-slate-950 bg-emerald-400" />
+              </div>
+
+              <div>
+                <p className="text-xs font-bold text-white">
+                  {upcomingWebinars[0].speaker}
+                </p>
+
+                <p className="mt-0.5 text-[10px] text-slate-400">
+                  {upcomingWebinars[0].role}
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              className="rounded-xl bg-white px-4 py-2.5 text-[10px] font-black text-slate-950 transition-all hover:bg-sky-400"
+            >
+              Reserve Seat
+            </button>
+
+          </div>
         </div>
 
-      </section>
+        {/* Floating notification card */}
+        <div className="absolute -bottom-7 -left-5 hidden w-[220px] rounded-2xl border border-slate-200 bg-white p-3 shadow-xl sm:block">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <Users className="h-5 w-5" />
+            </div>
+
+            <div>
+              <p className="text-xs font-black text-slate-900">
+                240+ Learners
+              </p>
+              <p className="mt-0.5 text-[10px] text-slate-500">
+                already registered
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-100">
+            <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-sky-400 to-indigo-600" />
+          </div>
+        </div>
+
+        {/* Floating certificate card */}
+        <div className="absolute -right-4 top-1/3 hidden rounded-2xl border border-white bg-white/95 p-3 shadow-xl backdrop-blur-xl md:block">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50 text-amber-500">
+              <Award className="h-4 w-4" />
+            </div>
+
+            <div>
+              <p className="text-[10px] font-black text-slate-900">
+                Certificate
+              </p>
+              <p className="text-[9px] text-slate-400">
+                Selected sessions
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* =====================================================
-          CATEGORY FILTER VISUAL
+          CATEGORY BAR
+          DIRECTLY CONNECTED TO HERO
       ====================================================== */}
 
-      <section className="border-y border-white/80 bg-white/35 px-4 py-5 backdrop-blur-xl sm:px-6 lg:px-8">
+      <section className="relative border-y border-slate-200/70 bg-white/75 px-4 py-4 shadow-[0_-5px_25px_rgba(15,23,42,0.03)] backdrop-blur-xl sm:px-6 lg:px-8">
 
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-2">
 
-          {categories.map(
-            (category, index) => (
-              <button
-                key={category}
-                type="button"
-                className={`rounded-full px-5 py-2.5 text-[12px] font-semibold transition-all duration-300 ${
-                  index === 0
-                    ? "bg-[#485DAC] text-white shadow-[0_8px_20px_rgba(72,93,172,0.20)]"
-                    : "border border-white/80 bg-white/60 text-slate-600 backdrop-blur-xl hover:-translate-y-0.5 hover:bg-white hover:text-[#485DAC]"
-                }`}
-              >
-                {category}
-              </button>
-            )
-          )}
+          {categories.map((category, index) => (
+            <button
+              key={category}
+              type="button"
+              className={`rounded-full px-4 py-2 text-[11px] font-bold transition-all duration-300 sm:px-5 sm:py-2.5 ${
+                index === 0
+                  ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/20"
+                  : "border border-slate-200 bg-white text-slate-600 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
 
         </div>
 
       </section>
 
       {/* =====================================================
-          UPCOMING WEBINARS (id="upcoming")
+          UPCOMING WEBINARS
       ====================================================== */}
 
       <section
         id="upcoming"
-        className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+        className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       >
 
         <div className="mx-auto max-w-7xl">
 
-          {/* Header */}
-
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
 
             <div>
 
-              <div className="mb-3 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#485DAC]">
-                <span className="h-2 w-2 rounded-full bg-[#53B8EC]" />
+              <div className="mb-2 inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-indigo-600">
+
+                <span className="h-2 w-2 rounded-full bg-sky-400" />
+
                 Upcoming Sessions
+
               </div>
 
-              <h2 className="text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+              <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
                 Upcoming Webinars
               </h2>
 
@@ -629,7 +715,7 @@ export default function WebinarsPage() {
 
             <button
               type="button"
-              className="inline-flex items-center gap-2 self-start rounded-full border border-white/90 bg-white/65 px-5 py-2.5 text-[12px] font-bold text-slate-600 shadow-[0_8px_25px_rgba(70,90,140,0.08)] backdrop-blur-xl transition hover:bg-white sm:self-auto"
+              className="inline-flex items-center gap-2 self-start rounded-full border border-slate-200 bg-white px-5 py-2.5 text-xs font-bold text-slate-600 shadow-sm transition hover:bg-slate-50 sm:self-auto"
             >
               View All
               <ArrowRight className="h-4 w-4" />
@@ -637,283 +723,328 @@ export default function WebinarsPage() {
 
           </div>
 
-          {/* Carousel */}
-
-          <WebinarCarousel
-            webinars={upcomingWebinars}
-          />
+          <WebinarCarousel webinars={upcomingWebinars} />
 
         </div>
 
       </section>
 
       {/* =====================================================
-          WEEKEND WORKSHOPS (id="workshops")
+          WORKSHOPS
       ====================================================== */}
 
-      <section id="workshops" className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+      <section
+        id="workshops"
+        className="bg-white/40 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      >
+
         <div className="mx-auto max-w-7xl">
+
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#485DAC]">
-              <Code2 className="h-3.5 w-3.5 text-[#53B8EC]" />
+
+            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600">
+
+              <Code2 className="h-3.5 w-3.5 text-sky-500" />
+
               Hands-On Learning
+
             </div>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               Weekend Workshops
             </h2>
+
             <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500">
               Build functional real-world projects step-by-step with expert code reviews and dedicated mentorship.
             </p>
+
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+
             {workshopsData.map((workshop) => (
               <div
                 key={workshop.id}
-                className="group relative overflow-hidden rounded-[28px] border border-white/90 bg-white/60 p-4 shadow-[0_20px_50px_rgba(70,90,150,0.12)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_rgba(70,90,150,0.18)]"
+                className="group overflow-hidden rounded-[26px] border border-slate-200/80 bg-white/90 p-4 shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="relative h-[220px] overflow-hidden rounded-[20px] sm:h-[260px]">
+
+                <div className="relative h-[220px] overflow-hidden rounded-[20px] sm:h-[250px]">
+
                   <img
                     src={workshop.image}
                     alt={workshop.title}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#101638]/80 via-[#101638]/10 to-transparent" />
-                  
-                  <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold text-slate-700 backdrop-blur-xl shadow-md">
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+
+                  <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold text-slate-700">
                     {workshop.category}
                   </div>
 
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <h3 className="text-xl font-extrabold leading-tight sm:text-2xl">
+                  <div className="absolute bottom-4 left-4 right-4">
+
+                    <h3 className="text-xl font-extrabold leading-tight text-white sm:text-2xl">
                       {workshop.title}
                     </h3>
+
                   </div>
+
                 </div>
 
                 <div className="p-4 pt-5">
-                  <p className="text-[13px] leading-6 text-slate-500">
+
+                  <p className="text-xs leading-relaxed text-slate-500 sm:text-sm">
                     {workshop.description}
                   </p>
 
-                  <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-slate-500 border-t border-slate-100 pt-4">
+                  <div className="mt-4 flex flex-wrap gap-4 border-t border-slate-100 pt-4 text-xs text-slate-500">
+
                     <span className="inline-flex items-center gap-1.5">
-                      <CalendarDays className="h-4 w-4 text-[#53B8EC]" />
+                      <CalendarDays className="h-4 w-4 text-sky-500" />
                       {workshop.date}
                     </span>
+
                     <span className="inline-flex items-center gap-1.5">
-                      <Clock3 className="h-4 w-4 text-[#485DAC]" />
+                      <Clock3 className="h-4 w-4 text-indigo-600" />
                       {workshop.duration}
                     </span>
+
                   </div>
 
-                  <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
+                  <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-4">
+
                     <div>
-                      <p className="text-[13px] font-bold text-slate-800">
+                      <p className="text-xs font-bold text-slate-900">
                         {workshop.speaker}
                       </p>
-                      <p className="text-[11px] text-slate-400">
+
+                      <p className="text-[10px] text-slate-400">
                         {workshop.role}
                       </p>
                     </div>
+
                     <button
                       type="button"
-                      className="rounded-full bg-[#485DAC] px-5 py-2.5 text-[12px] font-bold text-white shadow-[0_8px_20px_rgba(72,93,172,0.22)] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                      className="rounded-xl bg-indigo-600 px-5 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-indigo-700"
                     >
                       Join Workshop
                     </button>
+
                   </div>
+
                 </div>
+
               </div>
             ))}
+
           </div>
+
         </div>
+
       </section>
 
       {/* =====================================================
-          COMMUNITY HACKATHONS (id="hackathons") - Redesigned UI
+          HACKATHONS
       ====================================================== */}
 
-      <section id="hackathons" className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+      <section
+        id="hackathons"
+        className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      >
+
         <div className="mx-auto max-w-7xl">
-          
+
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/90 bg-white/70 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#E9577C] shadow-sm backdrop-blur-xl">
-              <Flame className="h-3.5 w-3.5 animate-pulse text-[#E9577C]" />
+
+            <div className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-50 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-pink-600">
+
+              <Flame className="h-3.5 w-3.5 animate-pulse" />
+
               Compete, Build & Win
+
             </div>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+
+            <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               Community Hackathons
             </h2>
+
             <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500">
-              Form teams, push the limits of your coding capability, build ground-breaking tech projects, and win huge reward pools.
+              Form teams, build ground-breaking projects, and compete for exciting reward pools.
             </p>
+
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+
             {hackathonsData.map((hackathon) => (
               <div
                 key={hackathon.id}
-                className="group relative overflow-hidden rounded-[30px] border border-white/90 bg-white/65 p-4 shadow-[0_25px_60px_rgba(70,90,150,0.14)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_35px_80px_rgba(70,90,150,0.22)]"
+                className="group overflow-hidden rounded-[26px] border border-slate-200/80 bg-white/90 p-4 shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
               >
-                {/* Image Banner */}
-                <div className="relative h-[220px] overflow-hidden rounded-[22px] sm:h-[250px]">
+
+                <div className="relative h-[220px] overflow-hidden rounded-[20px] sm:h-[250px]">
+
                   <img
                     src={hackathon.image}
                     alt={hackathon.title}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#08123d]/90 via-[#08123d]/20 to-transparent" />
 
-                  {/* Status Tag */}
-                  <div className="absolute left-4 top-4 rounded-full bg-emerald-500/95 px-3 py-1.5 text-[10px] font-bold text-white shadow-lg backdrop-blur-md">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+
+                  <div className="absolute left-4 top-4 rounded-full bg-emerald-600 px-3 py-1 text-[10px] font-bold text-white">
                     {hackathon.status}
                   </div>
 
-                  {/* Prize Badge Overlay */}
-                  <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-amber-400/95 px-3.5 py-1.5 text-[11px] font-black text-slate-900 shadow-lg backdrop-blur-md">
+                  <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-amber-400 px-3 py-1 text-[10px] font-black text-slate-950">
                     <Trophy className="h-3.5 w-3.5" />
                     {hackathon.prize}
                   </div>
 
                   <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-sky-300">
+
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400">
                       {hackathon.category}
                     </span>
-                    <h3 className="mt-0.5 text-2xl font-black tracking-tight text-white">
+
+                    <h3 className="mt-1 text-xl font-black">
                       {hackathon.title}
                     </h3>
+
                   </div>
+
                 </div>
 
-                {/* Details info */}
                 <div className="p-4 pt-5">
-                  <p className="text-[13px] leading-6 text-slate-500">
+
+                  <p className="text-xs leading-relaxed text-slate-500 sm:text-sm">
                     {hackathon.description}
                   </p>
 
-                  <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] font-semibold text-slate-600 border-t border-slate-100 pt-4">
-                    <span className="inline-flex items-center gap-1.5 text-slate-500">
-                      <CalendarDays className="h-4 w-4 text-[#E9577C]" />
+                  <div className="mt-4 flex flex-wrap gap-5 border-t border-slate-100 pt-4 text-xs text-slate-500">
+
+                    <span className="inline-flex items-center gap-1.5">
+                      <CalendarDays className="h-4 w-4 text-pink-500" />
                       {hackathon.deadline}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-slate-500">
-                      <Users className="h-4 w-4 text-[#485DAC]" />
+
+                    <span className="inline-flex items-center gap-1.5">
+                      <Users className="h-4 w-4 text-indigo-600" />
                       {hackathon.teamSize}
                     </span>
+
                   </div>
 
-                  <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
-                    <div className="flex items-center gap-2 text-[12px] font-bold text-slate-700">
-                      <Zap className="h-4 w-4 text-amber-500 fill-amber-500" />
+                  <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-4">
+
+                    <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
+
+                      <Zap className="h-4 w-4 fill-current text-amber-500" />
+
                       Global Submission
+
                     </div>
 
                     <button
                       type="button"
-                      className="rounded-full bg-gradient-to-r from-[#485DAC] to-[#E9577C] px-6 py-2.5 text-[12px] font-bold text-white shadow-[0_10px_25px_rgba(233,87,124,0.25)] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                      className="rounded-xl bg-gradient-to-r from-indigo-600 to-pink-600 px-5 py-2.5 text-xs font-bold text-white shadow-md transition hover:opacity-90"
                     >
                       Register Now
                     </button>
+
                   </div>
+
                 </div>
 
               </div>
             ))}
+
           </div>
 
         </div>
+
       </section>
 
       {/* =====================================================
-          FEATURED WEBINAR BANNER
+          FEATURED WEBINAR
       ====================================================== */}
 
-      <section className="px-4 pb-20 sm:px-6 sm:pb-24 lg:px-8">
+      <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
 
-          <div className="relative overflow-hidden rounded-[32px] border border-white/80 bg-gradient-to-br from-[#101638] via-[#25336d] to-[#485DAC] p-6 shadow-[0_30px_80px_rgba(50,60,130,0.20)] sm:p-10 lg:p-12">
+          <div className="relative overflow-hidden rounded-[30px] bg-gradient-to-br from-slate-900 via-indigo-950 to-indigo-900 p-6 shadow-2xl sm:p-10 lg:p-12">
 
-            {/* Decorative glow */}
+            <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-sky-500/20 blur-3xl" />
 
-            <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-sky-300/20 blur-3xl" />
-
-            <div className="absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-pink-400/10 blur-3xl" />
+            <div className="absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-pink-500/10 blur-3xl" />
 
             <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
 
-              {/* Content */}
-
               <div className="text-white">
 
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-bold tracking-[0.16em] text-sky-200 backdrop-blur-xl">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[10px] font-bold tracking-widest text-sky-200">
                   <Sparkles className="h-3.5 w-3.5" />
                   FEATURED WEBINAR
                 </div>
 
-                <h2 className="mt-5 max-w-2xl text-3xl font-black leading-tight tracking-[-0.04em] sm:text-4xl lg:text-5xl">
+                <h2 className="mt-5 max-w-2xl text-3xl font-black leading-tight sm:text-4xl lg:text-5xl">
                   Build Smarter Applications With Generative AI
                 </h2>
 
-                <p className="mt-4 max-w-xl text-sm leading-7 text-white/65">
+                <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300">
                   Explore practical ways modern developers are using AI to build faster, smarter, and more efficient applications.
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-5 text-[12px] text-white/75">
+                <div className="mt-6 flex flex-wrap gap-5 text-xs text-slate-300">
 
                   <span className="inline-flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4 text-sky-300" />
+                    <CalendarDays className="h-4 w-4 text-sky-400" />
                     Sep 05, 2026
                   </span>
 
                   <span className="inline-flex items-center gap-2">
-                    <Clock3 className="h-4 w-4 text-purple-300" />
+                    <Clock3 className="h-4 w-4 text-purple-400" />
                     6:30 PM
                   </span>
 
                   <span className="inline-flex items-center gap-2">
-                    <Users className="h-4 w-4 text-pink-300" />
-                    Live
+                    <Users className="h-4 w-4 text-pink-400" />
+                    Live Q&A
                   </span>
 
                 </div>
 
-                <div className="mt-8">
-
-                  <button
-                    type="button"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#25336d] shadow-lg transition hover:-translate-y-1"
-                  >
-                    Reserve My Seat
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
-
-                </div>
+                <button
+                  type="button"
+                  className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-white px-7 py-3.5 text-sm font-bold text-slate-900 shadow-xl transition hover:bg-slate-100"
+                >
+                  Reserve My Seat
+                  <ArrowRight className="h-4 w-4" />
+                </button>
 
               </div>
 
-              {/* Speaker */}
-
               <div className="relative mx-auto w-full max-w-[360px]">
 
-                <div className="absolute -inset-5 rounded-[32px] bg-gradient-to-r from-sky-300/20 via-purple-300/20 to-pink-300/20 blur-2xl" />
+                <div className="absolute -inset-4 rounded-[32px] bg-gradient-to-r from-sky-500/20 to-pink-500/20 blur-2xl" />
 
                 <div className="relative overflow-hidden rounded-[28px] border border-white/20 bg-white/10 p-3 backdrop-blur-xl">
 
                   <img
                     src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80"
                     alt="Webinar speaker"
-                    className="h-[340px] w-full rounded-[22px] object-cover"
+                    className="h-[320px] w-full rounded-[22px] object-cover"
                   />
 
-                  <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/20 bg-black/30 p-4 backdrop-blur-xl">
+                  <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/20 bg-slate-950/60 p-4 backdrop-blur-xl">
 
-                    <p className="text-[14px] font-bold text-white">
+                    <p className="text-sm font-bold text-white">
                       Amit Patil
                     </p>
 
-                    <p className="mt-1 text-[11px] text-white/60">
+                    <p className="mt-0.5 text-xs text-slate-400">
                       AI Solutions Architect
                     </p>
 
@@ -935,21 +1066,21 @@ export default function WebinarsPage() {
           WHY ATTEND
       ====================================================== */}
 
-      <section className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+      <section className="bg-white/40 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
 
           <div className="mx-auto max-w-2xl text-center">
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/65 px-4 py-1.5 text-[11px] font-bold text-slate-500 shadow-sm backdrop-blur-xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-bold text-slate-600 shadow-sm">
 
-              <Sparkles className="h-3.5 w-3.5 text-[#53B8EC]" />
+              <Sparkles className="h-3.5 w-3.5 text-sky-500" />
 
-              WHY GETUPSKILL 
+              WHY GETUPSKILL
 
             </div>
 
-            <h2 className="mt-5 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               More Than Just a Webinar
             </h2>
 
@@ -959,41 +1090,40 @@ export default function WebinarsPage() {
 
           </div>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
-            {benefits.map(
-              (benefit) => {
-                const Icon =
-                  benefit.icon;
+            {benefits.map((benefit) => {
 
-                return (
+              const Icon = benefit.icon;
+
+              return (
+                <div
+                  key={benefit.title}
+                  className="group rounded-[24px] border border-slate-200/80 bg-white/80 p-6 text-center shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+                >
+
                   <div
-                    key={benefit.title}
-                    className="group rounded-[22px] border border-white/80 bg-white/55 p-6 text-center shadow-[0_15px_45px_rgba(75,95,150,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/75 hover:shadow-[0_25px_60px_rgba(75,95,150,0.14)]"
+                    className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-500 group-hover:scale-110"
+                    style={{
+                      backgroundColor: `${benefit.accent}18`,
+                      color: benefit.accent,
+                    }}
                   >
-
-                    <div
-                      className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
-                      style={{
-                        backgroundColor: `${benefit.accent}18`,
-                        color: benefit.accent,
-                      }}
-                    >
-                      <Icon className="h-6 w-6" />
-                    </div>
-
-                    <h3 className="mt-5 text-[16px] font-extrabold text-[#111827]">
-                      {benefit.title}
-                    </h3>
-
-                    <p className="mt-2 text-[13px] leading-6 text-slate-500">
-                      {benefit.description}
-                    </p>
-
+                    <Icon className="h-6 w-6" />
                   </div>
-                );
-              }
-            )}
+
+                  <h3 className="mt-5 text-base font-extrabold text-slate-900">
+                    {benefit.title}
+                  </h3>
+
+                  <p className="mt-2 text-xs leading-relaxed text-slate-500 sm:text-sm">
+                    {benefit.description}
+                  </p>
+
+                </div>
+              );
+
+            })}
 
           </div>
 
@@ -1002,19 +1132,19 @@ export default function WebinarsPage() {
       </section>
 
       {/* =====================================================
-          PAST WEBINARS / RECORDINGS (id="webinars")
+          PAST WEBINARS
       ====================================================== */}
 
       <section
         id="webinars"
-        className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+        className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       >
 
         <div className="mx-auto max-w-7xl">
 
           <div className="text-center">
 
-            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#485DAC]">
+            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600">
 
               <Play className="h-3.5 w-3.5" />
 
@@ -1022,7 +1152,7 @@ export default function WebinarsPage() {
 
             </div>
 
-            <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               Explore Past Webinars
             </h2>
 
@@ -1032,74 +1162,76 @@ export default function WebinarsPage() {
 
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-            {pastWebinars.map(
-              (webinar) => (
-                <article
-                  key={webinar.id}
-                  className="group overflow-hidden rounded-[22px] border border-white/80 bg-white/55 shadow-[0_18px_50px_rgba(75,95,150,0.10)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/75 hover:shadow-[0_28px_70px_rgba(75,95,150,0.16)]"
-                >
+            {pastWebinars.map((webinar) => (
 
-                  <div className="relative h-[200px] overflow-hidden">
+              <article
+                key={webinar.id}
+                className="group overflow-hidden rounded-[24px] border border-slate-200/80 bg-white/80 shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+              >
 
-                    <img
-                      src={webinar.image}
-                      alt={webinar.title}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                <div className="relative h-[200px] overflow-hidden">
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <img
+                    src={webinar.image}
+                    alt={webinar.title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
 
-                    <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold text-slate-700 backdrop-blur-xl">
-                      {webinar.category}
-                    </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
 
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
-
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#485DAC] shadow-lg">
-                        <Play className="ml-0.5 h-4 w-4 fill-current" />
-                      </span>
-
-                      <span className="text-[11px] font-bold">
-                        Watch Recording
-                      </span>
-
-                    </div>
-
+                  <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold text-slate-700">
+                    {webinar.category}
                   </div>
 
-                  <div className="p-5">
+                  <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
 
-                    <h3 className="line-clamp-2 text-[17px] font-extrabold leading-6 text-[#111827]">
-                      {webinar.title}
-                    </h3>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-indigo-600 shadow-md">
 
-                    <div className="mt-4 flex items-center justify-between text-[11px] text-slate-400">
+                      <Play className="ml-0.5 h-4 w-4 fill-current" />
 
-                      <span>
-                        {webinar.speaker}
-                      </span>
+                    </span>
 
-                      <span>
-                        {webinar.date}
-                      </span>
-
-                    </div>
-
-                    <button
-                      type="button"
-                      className="mt-5 inline-flex items-center gap-2 text-[12px] font-bold text-[#485DAC]"
-                    >
+                    <span className="text-xs font-bold">
                       Watch Recording
-                      <ChevronRight className="h-4 w-4" />
-                    </button>
+                    </span>
 
                   </div>
 
-                </article>
-              )
-            )}
+                </div>
+
+                <div className="p-5">
+
+                  <h3 className="line-clamp-2 text-base font-extrabold leading-snug text-slate-900">
+                    {webinar.title}
+                  </h3>
+
+                  <div className="mt-4 flex items-center justify-between text-xs text-slate-400">
+
+                    <span>
+                      {webinar.speaker}
+                    </span>
+
+                    <span>
+                      {webinar.date}
+                    </span>
+
+                  </div>
+
+                  <button
+                    type="button"
+                    className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 transition hover:translate-x-1"
+                  >
+                    Watch Recording
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+
+                </div>
+
+              </article>
+
+            ))}
 
           </div>
 
@@ -1111,25 +1243,23 @@ export default function WebinarsPage() {
           FINAL CTA
       ====================================================== */}
 
-      <section className="px-4 pb-20 sm:px-6 sm:pb-28 lg:px-8">
+      <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
 
-          <div className="relative overflow-hidden rounded-[30px] border border-white/80 bg-gradient-to-br from-[#e7f7ff] via-[#f4efff] to-[#fff3f7] px-6 py-14 text-center shadow-[0_25px_70px_rgba(75,95,150,0.10)] sm:px-10">
+          <div className="relative overflow-hidden rounded-[30px] border border-slate-200/80 bg-gradient-to-br from-sky-50 via-indigo-50/50 to-pink-50 px-6 py-12 text-center shadow-xl sm:px-10">
 
-            {/* Glow */}
-
-            <div className="absolute left-1/2 top-1/2 h-72 w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-200/20 blur-3xl" />
+            <div className="absolute left-1/2 top-1/2 h-72 w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-200/20 blur-3xl" />
 
             <div className="relative">
 
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-[#485DAC] shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-indigo-600 shadow-md">
 
                 <Sparkles className="h-6 w-6" />
 
               </div>
 
-              <h2 className="mt-6 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+              <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
                 Never Miss a Live Session
               </h2>
 
@@ -1142,12 +1272,12 @@ export default function WebinarsPage() {
                 <input
                   type="email"
                   placeholder="Enter your email address"
-                  className="h-12 flex-1 rounded-full border border-white/90 bg-white/70 px-5 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-[#53B8EC] focus:bg-white"
+                  className="h-12 flex-1 rounded-2xl border border-slate-200 bg-white px-5 text-sm text-slate-700 shadow-sm outline-none placeholder:text-slate-400 focus:border-indigo-600"
                 />
 
                 <button
                   type="button"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#485DAC] px-6 text-sm font-bold text-white shadow-[0_10px_25px_rgba(72,93,172,0.22)] transition hover:-translate-y-0.5 hover:shadow-lg"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-6 text-sm font-bold text-white shadow-lg shadow-indigo-600/25 transition hover:bg-indigo-700"
                 >
                   Notify Me
                   <ArrowRight className="h-4 w-4" />
@@ -1166,3 +1296,4 @@ export default function WebinarsPage() {
     </main>
   );
 }
+

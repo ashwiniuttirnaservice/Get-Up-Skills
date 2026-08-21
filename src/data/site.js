@@ -126,7 +126,7 @@ export const SIGNUP_URL = "https://getupskills.com/register";
 // Plain (non-dropdown) links shown between the Resources and Events menus —
 // mirrors codebasics.io's "Data Challenges" / "Hire Talent" nav items.
 export const nav = [
-  { label: "Data Challenges", href: "#courses" },
+  { label: "Data Challenges",   href: "/data-challenges" },
   { label: "Hire Talent", href: "#" },
 ];
 
