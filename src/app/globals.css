@@ -36,62 +36,70 @@ body {
   }
 }
 
-/* Gentle vertical float — used on hero thumbnails/decorative art. */
-@keyframes float {
+/* =========================================================
+   INSTRUCTOR SECTION ANIMATIONS
+========================================================= */
+
+@keyframes instructorFloat {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
+
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -16px, 0);
   }
-}
-.animate-float {
-  animation: float 5s ease-in-out infinite;
 }
 
-/* Slow, subtle glow-blob drift behind hero sections. */
-@keyframes drift {
+@keyframes polygonFloat {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    transform: translate3d(0, 0, 0) rotate(12deg);
   }
+
   50% {
-    transform: translate(20px, -16px) scale(1.08);
+    transform: translate3d(8px, -14px, 0) rotate(24deg);
   }
-}
-.animate-drift {
-  animation: drift 8s ease-in-out infinite;
 }
 
-/* Shine sweep across a button on hover — premium CTA micro-interaction. */
-.btn-shine {
-  position: relative;
-  overflow: hidden;
-}
-.btn-shine::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    115deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.35) 45%,
-    transparent 70%
-  );
-  transform: translateX(-120%);
-  transition: transform 0.7s ease;
-}
-.btn-shine:hover::after {
-  transform: translateX(120%);
+@keyframes sparkleRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.15);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animate-float,
-  .animate-drift {
-    animation: none;
-  }
-  .btn-shine::after {
-    display: none;
-  }
+.instructor-float {
+  animation: instructorFloat 7s ease-in-out infinite;
+}
+
+.instructor-float-delay-1 {
+  animation: instructorFloat 6s ease-in-out infinite 1s;
+}
+
+.instructor-float-delay-2 {
+  animation: instructorFloat 5s ease-in-out infinite 0.5s;
+}
+
+.instructor-float-delay-3 {
+  animation: instructorFloat 5s ease-in-out infinite 1.5s;
+}
+
+.polygon-float {
+  animation: polygonFloat 9s ease-in-out infinite;
+}
+
+.polygon-float-delay {
+  animation: polygonFloat 8s ease-in-out infinite 1s;
+}
+
+.sparkle-rotate {
+  animation: sparkleRotate 4s linear infinite;
 }

@@ -176,18 +176,23 @@ export const resourceMenu = [
 export const eventsMenu = [
   {
     label: "Upcoming Webinars",
-    href: "#",
+    href: "/webinars#upcoming",
     desc: "Live sessions with mentors on trending tech topics",
   },
   {
     label: "Workshops",
-    href: "#",
+    href: "/webinars#workshops",
     desc: "Hands-on weekend workshops on real projects",
   },
   {
     label: "Hackathons",
-    href: "#",
+    href: "/webinars#hackathons",
     desc: "Compete, build and win with fellow learners",
+  },
+  {
+    label: "Webinars",
+    href: "/webinars#webinars",
+    desc: "Watch expert-led webinars and recorded learning sessions",
   },
 ];
 
