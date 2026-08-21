@@ -111,3 +111,24 @@ export async function getCourseById(id) {
     return null;
   }
 }
+
+/**
+ * GET /api/courses/:id/curriculum — real Phase/Week/Chapter/Lecture
+ * curriculum for a course (public, no auth). Falls back on the backend side
+ * to a flat lecture list when the structured curriculum isn't built out yet
+ * for that course. Returns null on failure (page falls back to the
+ * synthetic curriculum instead of breaking).
+ */
+export async function getCourseCurriculum(id) {
+  try {
+    const res = await fetch(`${API_BASE}/api/courses/${id}/curriculum`, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) return null;
+    const json = await res.json();
+    return json?.data || null;
+  } catch {
+    return null;
+  }
+}

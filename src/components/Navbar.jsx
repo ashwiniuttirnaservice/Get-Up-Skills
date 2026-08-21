@@ -29,15 +29,22 @@ function NavDropdown({ label, items }) {
   }, []);
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="group relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1 text-sm font-medium text-slate-700 transition hover:text-[#485DAC]"
+        className={`flex items-center gap-1 text-sm font-medium transition ${
+          open ? "text-[#485DAC]" : "text-slate-700 hover:text-[#485DAC]"
+        }`}
         aria-expanded={open}
       >
         {label}
         <ChevronDown size={16} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
+      <span
+        className={`absolute -bottom-1.5 left-0 h-0.5 rounded-full bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] transition-all duration-300 ${
+          open ? "w-full" : "w-0 group-hover:w-full"
+        }`}
+      />
 
       {/* Always mounted; visibility toggled via classes so the child
           tree shape never changes between renders. */}
@@ -96,18 +103,49 @@ function MobileMenuGroup({ label, items, onNavigate }) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 8);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur-md">
+    <header
+      className={`sticky top-0 z-50 border-b bg-white/95 backdrop-blur-md transition-shadow duration-300 ${
+        scrolled ? "border-black/5 shadow-md shadow-slate-900/5" : "border-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="#home" className="flex shrink-0 items-center gap-2 font-extrabold text-xl">
-          <Image src="/Logo.png" alt="GetUpSkill" width={40} height={40} className="h-9 w-9" priority />
+        <Link
+          href="#home"
+          className="group flex shrink-0 items-center gap-2 font-extrabold text-xl"
+        >
+          <Image
+            src="/Logo.png"
+            alt="GetUpSkill"
+            width={40}
+            height={40}
+            className="h-9 w-9 transition-transform duration-300 group-hover:rotate-6"
+            priority
+          />
           <span className="bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] bg-clip-text text-transparent">
             GetUpSkill
           </span>
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex xl:gap-7">
+          <a
+            href="#home"
+            className="group relative whitespace-nowrap text-sm font-medium text-slate-700 transition hover:text-[#485DAC]"
+          >
+            Home
+            <span className="absolute -bottom-1.5 left-0 h-0.5 w-0 rounded-full bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] transition-all duration-300 group-hover:w-full" />
+          </a>
           <NavDropdown label="Courses" items={courseMenu} />
           <NavDropdown label="Resources" items={resourceMenu} />
 
@@ -115,9 +153,10 @@ export default function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              className="whitespace-nowrap text-sm font-medium text-slate-700 transition hover:text-[#485DAC]"
+              className="group relative whitespace-nowrap text-sm font-medium text-slate-700 transition hover:text-[#485DAC]"
             >
               {item.label}
+              <span className="absolute -bottom-1.5 left-0 h-0.5 w-0 rounded-full bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
 
@@ -130,7 +169,7 @@ export default function Navbar() {
             href={LOGIN_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-md border border-[#485DAC] px-3.5 py-1.5 text-sm font-semibold text-[#485DAC] transition hover:bg-[#485DAC]/5"
+            className="flex items-center gap-1.5 rounded-md border border-[#485DAC] px-3.5 py-1.5 text-sm font-semibold text-[#485DAC] transition hover:bg-[#485DAC]/5 active:scale-95"
           >
             <LogIn size={16} />
             Sign In
@@ -139,7 +178,7 @@ export default function Navbar() {
             href={SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-md border border-[#485DAC] px-3.5 py-1.5 text-sm font-semibold text-[#485DAC] transition hover:bg-[#485DAC]/5"
+            className="btn-shine flex items-center gap-1.5 rounded-md bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] px-3.5 py-1.5 text-sm font-semibold text-white shadow-md shadow-[#485DAC]/20 transition hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
           >
             <UserPlus size={16} />
             Sign Up

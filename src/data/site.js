@@ -123,12 +123,8 @@ export const faqs = [
 export const LOGIN_URL = "https://getupskills.com/login";
 export const SIGNUP_URL = "https://getupskills.com/register";
 
-// Plain (non-dropdown) links shown between the Resources and Events menus —
-// mirrors codebasics.io's "Data Challenges" / "Hire Talent" nav items.
-export const nav = [
-  { label: "Data Challenges", href: "#courses" },
-  { label: "Hire Talent", href: "#" },
-];
+// Plain (non-dropdown) link shown between the Resources and Events menus.
+export const nav = [{ label: "Data Challenges", href: "#courses" }];
 
 // Dropdown shown under the "Courses" nav item — mirrors the LMS backend's
 // course `type` field (Course.type enum: Beginner/Intermediate/Advanced),
@@ -156,22 +152,22 @@ export const courseMenu = [
 export const resourceMenu = [
   {
     label: "Blog",
-    href: "#",
+    href: "/resources/blog",
     desc: "Articles and guides on tech, data & career growth",
   },
   {
     label: "YouTube Channel",
-    href: "#",
+    href: "/resources/youtube",
     desc: "Free tutorials and walkthroughs from our instructors",
   },
   {
     label: "Interview Prep",
-    href: "#",
+    href: "/resources/interview-prep",
     desc: "Practice questions and mock-interview resources",
   },
   {
     label: "Career Roadmaps",
-    href: "#",
+    href: "/resources/career-roadmaps",
     desc: "Step-by-step paths to break into tech roles",
   },
 ];

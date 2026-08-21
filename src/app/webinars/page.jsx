@@ -19,6 +19,9 @@ import {
 } from "lucide-react";
 
 import WebinarCarousel from "@/components/WebinarCarousel";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
 
 /* =========================================================
    DUMMY WEBINAR DATA
@@ -291,7 +294,9 @@ export default function WebinarsPage() {
   }, []);
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f8fbff]">
+    <>
+      <Navbar />
+      <main className="relative min-h-screen overflow-hidden bg-[#f8fbff]">
 
       {/* =====================================================
           GLOBAL BACKGROUND
@@ -357,7 +362,7 @@ export default function WebinarsPage() {
 
               {/* Badge */}
 
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/75 px-4 py-2 text-[11px] font-bold tracking-[0.14em] text-slate-700 shadow-[0_10px_30px_rgba(70,100,160,0.12)] backdrop-blur-xl transform transition-transform hover:scale-105">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/75 px-4 py-2 text-sm font-semibold text-slate-700 shadow-[0_10px_30px_rgba(70,100,160,0.12)] backdrop-blur-xl">
 
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
@@ -372,7 +377,7 @@ export default function WebinarsPage() {
 
               {/* Heading with 3D shadow depth */}
 
-              <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-[-0.05em] text-[#08123d] sm:text-5xl lg:text-6xl xl:text-[72px] drop-shadow-sm">
+              <h1 className="mt-6 text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
 
                 Learn Live.
 
@@ -424,7 +429,7 @@ export default function WebinarsPage() {
               <div className="mt-10 flex flex-wrap justify-center gap-6 text-left lg:justify-start border-t border-slate-200/60 pt-6">
 
                 <div>
-                  <p className="text-2xl font-extrabold text-[#08123d]">
+                  <p className="text-2xl font-extrabold text-slate-900">
                     50+
                   </p>
                   <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
@@ -435,7 +440,7 @@ export default function WebinarsPage() {
                 <div className="h-10 w-px bg-slate-200" />
 
                 <div>
-                  <p className="text-2xl font-extrabold text-[#08123d]">
+                  <p className="text-2xl font-extrabold text-slate-900">
                     25+
                   </p>
                   <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
@@ -446,7 +451,7 @@ export default function WebinarsPage() {
                 <div className="h-10 w-px bg-slate-200" />
 
                 <div>
-                  <p className="text-2xl font-extrabold text-[#08123d]">
+                  <p className="text-2xl font-extrabold text-slate-900">
                     10K+
                   </p>
                   <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
@@ -501,7 +506,7 @@ export default function WebinarsPage() {
                       Featured Masterclass
                     </p>
 
-                    <h2 className="mt-1 text-2xl font-black leading-tight sm:text-3xl drop-shadow-md">
+                    <h2 className="mt-1 text-2xl font-extrabold leading-tight sm:text-3xl drop-shadow-md">
                       {upcomingWebinars[0].title}
                     </h2>
 
@@ -608,16 +613,16 @@ export default function WebinarsPage() {
 
           {/* Header */}
 
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <Reveal className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
 
             <div>
 
-              <div className="mb-3 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#485DAC]">
+              <div className="mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-[#485DAC]">
                 <span className="h-2 w-2 rounded-full bg-[#53B8EC]" />
                 Upcoming Sessions
               </div>
 
-              <h2 className="text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+              <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">
                 Upcoming Webinars
               </h2>
 
@@ -629,19 +634,19 @@ export default function WebinarsPage() {
 
             <button
               type="button"
-              className="inline-flex items-center gap-2 self-start rounded-full border border-white/90 bg-white/65 px-5 py-2.5 text-[12px] font-bold text-slate-600 shadow-[0_8px_25px_rgba(70,90,140,0.08)] backdrop-blur-xl transition hover:bg-white sm:self-auto"
+              className="inline-flex items-center gap-2 self-start rounded-full border border-white/90 bg-white/65 px-5 py-2.5 text-[12px] font-bold text-slate-600 shadow-[0_8px_25px_rgba(70,90,140,0.08)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white hover:shadow-lg sm:self-auto"
             >
               View All
               <ArrowRight className="h-4 w-4" />
             </button>
 
-          </div>
+          </Reveal>
 
           {/* Carousel */}
 
-          <WebinarCarousel
-            webinars={upcomingWebinars}
-          />
+          <Reveal delay={150}>
+            <WebinarCarousel webinars={upcomingWebinars} />
+          </Reveal>
 
         </div>
 
@@ -653,23 +658,23 @@ export default function WebinarsPage() {
 
       <section id="workshops" className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#485DAC]">
+          <Reveal className="text-center">
+            <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-[#485DAC]">
               <Code2 className="h-3.5 w-3.5 text-[#53B8EC]" />
               Hands-On Learning
             </div>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl">
               Weekend Workshops
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500">
               Build functional real-world projects step-by-step with expert code reviews and dedicated mentorship.
             </p>
-          </div>
+          </Reveal>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {workshopsData.map((workshop) => (
+            {workshopsData.map((workshop, wi) => (
+              <Reveal key={workshop.id} delay={wi * 100}>
               <div
-                key={workshop.id}
                 className="group relative overflow-hidden rounded-[28px] border border-white/90 bg-white/60 p-4 shadow-[0_20px_50px_rgba(70,90,150,0.12)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_rgba(70,90,150,0.18)]"
               >
                 <div className="relative h-[220px] overflow-hidden rounded-[20px] sm:h-[260px]">
@@ -725,6 +730,7 @@ export default function WebinarsPage() {
                   </div>
                 </div>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -737,23 +743,23 @@ export default function WebinarsPage() {
       <section id="hackathons" className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/90 bg-white/70 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#E9577C] shadow-sm backdrop-blur-xl">
+          <Reveal className="text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#E9577C]/10 px-4 py-1.5 text-sm font-semibold uppercase tracking-wider text-[#E9577C]">
               <Flame className="h-3.5 w-3.5 animate-pulse text-[#E9577C]" />
               Compete, Build & Win
             </div>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl">
               Community Hackathons
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500">
               Form teams, push the limits of your coding capability, build ground-breaking tech projects, and win huge reward pools.
             </p>
-          </div>
+          </Reveal>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {hackathonsData.map((hackathon) => (
+            {hackathonsData.map((hackathon, hi) => (
+              <Reveal key={hackathon.id} delay={hi * 100}>
               <div
-                key={hackathon.id}
                 className="group relative overflow-hidden rounded-[30px] border border-white/90 bg-white/65 p-4 shadow-[0_25px_60px_rgba(70,90,150,0.14)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_35px_80px_rgba(70,90,150,0.22)]"
               >
                 {/* Image Banner */}
@@ -771,7 +777,7 @@ export default function WebinarsPage() {
                   </div>
 
                   {/* Prize Badge Overlay */}
-                  <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-amber-400/95 px-3.5 py-1.5 text-[11px] font-black text-slate-900 shadow-lg backdrop-blur-md">
+                  <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-amber-400/95 px-3.5 py-1.5 text-[11px] font-bold text-slate-900 shadow-lg backdrop-blur-md">
                     <Trophy className="h-3.5 w-3.5" />
                     {hackathon.prize}
                   </div>
@@ -780,7 +786,7 @@ export default function WebinarsPage() {
                     <span className="text-[10px] font-bold uppercase tracking-wider text-sky-300">
                       {hackathon.category}
                     </span>
-                    <h3 className="mt-0.5 text-2xl font-black tracking-tight text-white">
+                    <h3 className="mt-0.5 text-2xl font-extrabold text-white">
                       {hackathon.title}
                     </h3>
                   </div>
@@ -819,6 +825,7 @@ export default function WebinarsPage() {
                 </div>
 
               </div>
+              </Reveal>
             ))}
           </div>
 
@@ -852,7 +859,7 @@ export default function WebinarsPage() {
                   FEATURED WEBINAR
                 </div>
 
-                <h2 className="mt-5 max-w-2xl text-3xl font-black leading-tight tracking-[-0.04em] sm:text-4xl lg:text-5xl">
+                <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
                   Build Smarter Applications With Generative AI
                 </h2>
 
@@ -939,7 +946,7 @@ export default function WebinarsPage() {
 
         <div className="mx-auto max-w-7xl">
 
-          <div className="mx-auto max-w-2xl text-center">
+          <Reveal className="mx-auto max-w-2xl text-center">
 
             <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/65 px-4 py-1.5 text-[11px] font-bold text-slate-500 shadow-sm backdrop-blur-xl">
 
@@ -949,7 +956,7 @@ export default function WebinarsPage() {
 
             </div>
 
-            <h2 className="mt-5 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+            <h2 className="mt-5 text-3xl font-extrabold text-slate-900 sm:text-4xl">
               More Than Just a Webinar
             </h2>
 
@@ -957,18 +964,18 @@ export default function WebinarsPage() {
               Every session is designed to give you practical knowledge that you can apply in your learning and career.
             </p>
 
-          </div>
+          </Reveal>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
             {benefits.map(
-              (benefit) => {
+              (benefit, bi) => {
                 const Icon =
                   benefit.icon;
 
                 return (
+                  <Reveal key={benefit.title} delay={bi * 80}>
                   <div
-                    key={benefit.title}
                     className="group rounded-[22px] border border-white/80 bg-white/55 p-6 text-center shadow-[0_15px_45px_rgba(75,95,150,0.08)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/75 hover:shadow-[0_25px_60px_rgba(75,95,150,0.14)]"
                   >
 
@@ -991,6 +998,7 @@ export default function WebinarsPage() {
                     </p>
 
                   </div>
+                  </Reveal>
                 );
               }
             )}
@@ -1012,9 +1020,9 @@ export default function WebinarsPage() {
 
         <div className="mx-auto max-w-7xl">
 
-          <div className="text-center">
+          <Reveal className="text-center">
 
-            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#485DAC]">
+            <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-[#485DAC]">
 
               <Play className="h-3.5 w-3.5" />
 
@@ -1022,7 +1030,7 @@ export default function WebinarsPage() {
 
             </div>
 
-            <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl">
               Explore Past Webinars
             </h2>
 
@@ -1030,14 +1038,14 @@ export default function WebinarsPage() {
               Missed a session? Catch up with recordings from our previous expert-led webinars.
             </p>
 
-          </div>
+          </Reveal>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
             {pastWebinars.map(
-              (webinar) => (
+              (webinar, pi) => (
+                <Reveal key={webinar.id} delay={pi * 80}>
                 <article
-                  key={webinar.id}
                   className="group overflow-hidden rounded-[22px] border border-white/80 bg-white/55 shadow-[0_18px_50px_rgba(75,95,150,0.10)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/75 hover:shadow-[0_28px_70px_rgba(75,95,150,0.16)]"
                 >
 
@@ -1098,6 +1106,7 @@ export default function WebinarsPage() {
                   </div>
 
                 </article>
+                </Reveal>
               )
             )}
 
@@ -1121,7 +1130,7 @@ export default function WebinarsPage() {
 
             <div className="absolute left-1/2 top-1/2 h-72 w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-200/20 blur-3xl" />
 
-            <div className="relative">
+            <Reveal className="relative">
 
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-[#485DAC] shadow-lg">
 
@@ -1129,7 +1138,7 @@ export default function WebinarsPage() {
 
               </div>
 
-              <h2 className="mt-6 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl">
+              <h2 className="mt-6 text-3xl font-extrabold text-slate-900 sm:text-4xl">
                 Never Miss a Live Session
               </h2>
 
@@ -1155,7 +1164,7 @@ export default function WebinarsPage() {
 
               </div>
 
-            </div>
+            </Reveal>
 
           </div>
 
@@ -1164,5 +1173,7 @@ export default function WebinarsPage() {
       </section>
 
     </main>
+      <Footer />
+    </>
   );
 }
