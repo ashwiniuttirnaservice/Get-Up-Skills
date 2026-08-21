@@ -45,6 +45,10 @@ function TrainerAvatar({
   const [imageSrc, setImageSrc] =
     useState(src || fallback);
 
+  /*
+   * If image URL changes,
+   * update displayed image.
+   */
   useEffect(() => {
     setImageSrc(src || fallback);
   }, [src, fallback]);
@@ -56,6 +60,7 @@ function TrainerAvatar({
         backgroundColor: `${accent}22`,
       }}
     >
+
       <Image
         src={imageSrc}
         alt={alt}
@@ -69,16 +74,17 @@ function TrainerAvatar({
         }}
       />
 
-      {/* Image Label */}
+      {/* Image label */}
 
       <div
-        className="absolute bottom-0 right-0 rounded-tl-lg px-2 py-1 text-[9px] font-bold leading-none text-white shadow-sm"
+        className="absolute bottom-0 right-0 rounded-tl-lg px-2 py-1 text-[8px] font-bold leading-none text-white shadow-sm"
         style={{
           backgroundColor: accent,
         }}
       >
         Trainer
       </div>
+
     </div>
   );
 }
@@ -96,8 +102,9 @@ function TrainerCard({
 
   return (
     <article
-      className="group relative flex min-h-[380px] flex-col overflow-hidden rounded-[22px] border border-white/80 bg-white/55 px-5 pb-5 pt-6 shadow-[0_18px_50px_rgba(75,95,150,0.12)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/75 hover:shadow-[0_28px_70px_rgba(75,95,150,0.20)] sm:px-6"
+      className="group relative flex min-h-[370px] flex-col overflow-hidden rounded-[22px] border border-white/80 bg-white/55 px-5 pb-5 pt-6 shadow-[0_18px_50px_rgba(75,95,150,0.12)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/75 hover:shadow-[0_28px_70px_rgba(75,95,150,0.20)] sm:px-6"
     >
+
       {/* =================================================
           TOP ACCENT
       ================================================== */}
@@ -121,7 +128,7 @@ function TrainerCard({
       />
 
       {/* =================================================
-          SMALL DECORATION
+          DECORATION
       ================================================== */}
 
       <div
@@ -132,16 +139,18 @@ function TrainerCard({
       />
 
       {/* =================================================
-          SINGLE TRAINER IMAGE
+          SINGLE IMAGE
       ================================================== */}
 
       <div className="relative z-10 mx-auto mt-1">
+
         <TrainerAvatar
           src={trainer.photo}
           alt={`${trainer.name} profile photo`}
           accent={accent}
           index={index}
         />
+
       </div>
 
       {/* =================================================
@@ -150,16 +159,14 @@ function TrainerCard({
 
       <div className="relative z-10 mt-5 text-center">
 
-        <h3 className="truncate text-[22px] font-extrabold tracking-tight text-[#111827]">
+        <h3 className="truncate text-[20px] font-extrabold tracking-tight text-[#111827]">
           {trainer.name}
         </h3>
 
-        {/* =================================================
-            TRAINER TITLE
-        ================================================== */}
+        {/* Title */}
 
         <p
-          className="mt-1.5 truncate text-[13px] font-semibold"
+          className="mt-1.5 truncate text-[11px] font-semibold"
           style={{
             color: accent,
           }}
@@ -167,11 +174,9 @@ function TrainerCard({
           {trainer.title}
         </p>
 
-        {/* =================================================
-            EXPERIENCE
-        ================================================== */}
+        {/* Experience */}
 
-        <div className="mt-1.5 flex items-center justify-center gap-2 text-[13px]">
+        <div className="mt-1.5 flex items-center justify-center gap-2 text-[11px]">
 
           <span className="text-slate-300">
             •
@@ -179,7 +184,7 @@ function TrainerCard({
 
           <span className="inline-flex items-center gap-1 text-slate-500">
 
-            <Briefcase className="h-3.5 w-3.5" />
+            <Briefcase className="h-3 w-3" />
 
             {trainer.tag}
 
@@ -190,15 +195,15 @@ function TrainerCard({
       </div>
 
       {/* =================================================
-          TRAINER BIO
+          BIO
       ================================================== */}
 
-      <p className="relative z-10 mx-auto mt-4 max-w-[290px] text-center text-[13px] leading-[1.7] text-slate-500 line-clamp-4">
+      <p className="relative z-10 mx-auto mt-4 max-w-[280px] text-center text-[12px] leading-[1.7] text-slate-500 line-clamp-4">
         {trainer.bio}
       </p>
 
       {/* =================================================
-          CARD FOOTER
+          FOOTER
       ================================================== */}
 
       <div className="relative z-10 mt-auto pt-5">
@@ -206,8 +211,8 @@ function TrainerCard({
         <div className="flex items-center justify-between border-t border-white/70 pt-4">
 
        
-      
-         
+
+        
         </div>
       </div>
 
@@ -229,7 +234,7 @@ export default function InstructorCarousel({
     useState(1);
 
   /* =======================================================
-     RESPONSIVE ITEMS PER VIEW
+     RESPONSIVE ITEMS
   ======================================================= */
 
   useEffect(() => {
@@ -278,7 +283,7 @@ export default function InstructorCarousel({
   }
 
   /* =======================================================
-     MAX INDEX
+     MAX SLIDE INDEX
   ======================================================= */
 
   const maxIndex = Math.max(
@@ -374,7 +379,7 @@ export default function InstructorCarousel({
   ]);
 
   /* =======================================================
-     TRANSLATE CAROUSEL
+     TRANSLATION
   ======================================================= */
 
   const translateX =
@@ -392,13 +397,13 @@ export default function InstructorCarousel({
     <div className="relative mt-12">
 
       {/* =================================================
-          CAROUSEL VIEWPORT
+          VIEWPORT
       ================================================== */}
 
       <div className="overflow-hidden px-1 py-3">
 
         {/* =================================================
-            CAROUSEL TRACK
+            TRACK
         ================================================== */}
 
         <div
@@ -438,16 +443,14 @@ export default function InstructorCarousel({
       </div>
 
       {/* =================================================
-          CAROUSEL CONTROLS
+          CONTROLS
       ================================================== */}
 
       {instructors.length >
         itemsPerView && (
         <div className="mt-7 flex items-center justify-center gap-5">
 
-          {/* =================================================
-              PREVIOUS BUTTON
-          ================================================== */}
+          {/* Previous */}
 
           <button
             type="button"
@@ -495,9 +498,7 @@ export default function InstructorCarousel({
 
           </div>
 
-          {/* =================================================
-              NEXT BUTTON
-          ================================================== */}
+          {/* Next */}
 
           <button
             type="button"
