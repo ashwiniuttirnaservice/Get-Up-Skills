@@ -945,7 +945,7 @@ export default function WebinarsPage() {
 
               <Sparkles className="h-3.5 w-3.5 text-[#53B8EC]" />
 
-              WHY  GETUPSKILL 
+              WHY GETUPSKILL 
 
             </div>
 
