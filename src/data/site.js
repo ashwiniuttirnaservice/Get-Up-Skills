@@ -151,8 +151,7 @@ export const courseMenu = [
   },
 ];
 
-// Dropdown shown under the "Resources" nav item — mirrors codebasics.io's
-// Resources menu.
+
 export const resourceMenu = [
   {
     label: "Blog",
