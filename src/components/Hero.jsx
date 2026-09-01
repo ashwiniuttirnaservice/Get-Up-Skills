@@ -87,30 +87,43 @@ export default function Hero() {
           <div className="relative">
             <div className="absolute -inset-6 rounded-[36px] bg-gradient-to-tr from-sky-300/25 via-purple-300/15 to-pink-300/25 blur-3xl" />
 
-            {/* Course-cover photo, peeking out behind the code card */}
-            <div className="absolute -right-6 -top-8 hidden w-40 rotate-6 overflow-hidden rounded-xl border-4 border-white shadow-[0_20px_45px_rgba(30,41,80,0.2)] sm:block">
-              <Image
-                src="/courses/data-science-bootcamp.svg"
-                alt="Data Science Bootcamp"
-                width={800}
-                height={450}
-                className="h-24 w-full object-cover"
-              />
-            </div>
+            {/* Abstract patterned backdrop, peeking out top-right — granola.ai's prism-burst accent */}
+            <div
+              className="absolute -right-10 -top-10 hidden h-56 w-44 -rotate-6 overflow-hidden rounded-2xl border-4 border-white shadow-[0_20px_45px_rgba(30,41,80,0.2)] sm:block"
+              style={{
+                backgroundImage:
+                  "conic-gradient(from 120deg, #53B8EC, #485DAC, #E9577C, #C7DA40, #53B8EC), radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1.5px)",
+                backgroundSize: "auto, 10px 10px",
+              }}
+            />
+
+            {/* Striped "book spine" bar, peeking out bottom-left */}
+            <div
+              className="absolute -bottom-8 -left-8 hidden h-40 w-14 rotate-3 rounded-lg border-4 border-white shadow-[0_20px_45px_rgba(30,41,80,0.2)] sm:block"
+              style={{
+                backgroundColor: "#C7DA40",
+                backgroundImage:
+                  "repeating-linear-gradient(180deg, rgba(255,255,255,0.35) 0 2px, transparent 2px 10px)",
+              }}
+            />
 
             <TiltCard className="relative">
               <CodeShowcase />
             </TiltCard>
 
-            {/* Second course-cover photo, small, overlapping bottom-right */}
-            <div className="absolute -bottom-6 right-6 hidden w-28 -rotate-6 overflow-hidden rounded-xl border-4 border-white shadow-[0_20px_45px_rgba(30,41,80,0.2)] md:block">
-              <Image
-                src="/courses/ui-ux-design.svg"
-                alt="UI/UX Design"
-                width={800}
-                height={450}
-                className="h-16 w-full object-cover"
-              />
+            {/* Stacked photo thumbnails, overlapping the card's bottom-right corner */}
+            <div className="absolute -bottom-6 -right-4 hidden flex-col gap-1.5 rounded-2xl border-2 border-slate-900 bg-slate-900 p-1.5 shadow-[0_20px_45px_rgba(30,41,80,0.25)] md:flex">
+              {["full-stack-web-dev.svg", "ui-ux-design.svg"].map((src) => (
+                <div key={src} className="h-11 w-14 overflow-hidden rounded-lg">
+                  <Image
+                    src={`/courses/${src}`}
+                    alt=""
+                    width={800}
+                    height={450}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </Reveal>
