@@ -14,6 +14,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "api.getupskills.com",
       },
+      {
+        // Placeholder photos used for the Hero's dummy thumbnail stack.
+        protocol: "https",
+        hostname: "i.pravatar.cc",
+      },
     ],
   },
 };

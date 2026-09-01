@@ -113,13 +113,14 @@ export default function Hero() {
 
             {/* Stacked photo thumbnails, overlapping the card's bottom-right corner */}
             <div className="absolute -bottom-6 -right-4 hidden flex-col gap-1.5 rounded-2xl border-2 border-slate-900 bg-slate-900 p-1.5 shadow-[0_20px_45px_rgba(30,41,80,0.25)] md:flex">
-              {["full-stack-web-dev.svg", "ui-ux-design.svg"].map((src) => (
-                <div key={src} className="h-11 w-14 overflow-hidden rounded-lg">
+              {/* Dummy placeholder photos — swap for real learner/mentor photos when available */}
+              {["11", "47"].map((seed) => (
+                <div key={seed} className="h-11 w-14 overflow-hidden rounded-lg">
                   <Image
-                    src={`/courses/${src}`}
+                    src={`https://i.pravatar.cc/100?img=${seed}`}
                     alt=""
-                    width={800}
-                    height={450}
+                    width={100}
+                    height={100}
                     className="h-full w-full object-cover"
                   />
                 </div>
