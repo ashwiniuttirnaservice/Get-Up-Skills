@@ -2,66 +2,93 @@ import { ArrowRight, PlayCircle, Sparkles } from "lucide-react";
 import CodeShowcase from "./CodeShowcase";
 import CountUp from "./CountUp";
 import Reveal from "./Reveal";
+import HeroSpotlight from "./HeroSpotlight";
+import TiltCard from "./TiltCard";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden bg-gradient-to-br from-[#f0f9ff] via-white to-[#fff5f7]">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#f0f9ff] via-white to-[#fff5f7]">
       {/* Decorative blobs */}
-      <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#53B8EC]/20 blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#53B8EC]/25 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-[#E9577C]/20 blur-3xl" />
+      <div
+        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full opacity-60 blur-[110px]"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(83,184,236,0.20), rgba(72,93,172,0.16), rgba(233,87,124,0.14))",
+        }}
+      />
+      <HeroSpotlight color="#485DAC" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-14">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-20 [perspective:1000px]">
         <Reveal delay={0}>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#485DAC]/10 px-4 py-1.5 text-sm font-semibold text-[#485DAC]">
-            <Sparkles size={14} /> New batch starting soon — limited seats
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/75 px-4 py-2 text-sm font-semibold text-slate-700 shadow-[0_10px_30px_rgba(70,100,160,0.12)] backdrop-blur-xl">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            New batch starting soon — limited seats
+            <Sparkles size={14} className="text-sky-400" />
           </span>
-          <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Learn skills that{" "}
-            <span className="bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] bg-clip-text text-transparent">
-              get you hired
+
+          <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-[64px]">
+            Build skills that{" "}
+            <span className="bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] bg-clip-text text-transparent drop-shadow-[0_10px_20px_rgba(72,93,172,0.18)]">
+              launch careers
             </span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-slate-600">
-            Practical, industry-designed bootcamps and courses in development,
-            data, design and marketing — with real projects, mentor support
-            and job assistance to take you from beginner to job-ready.
+          <p className="mt-6 max-w-xl text-[17px] leading-7 text-slate-500">
+            Industry-designed courses and bootcamps in web development, data
+            analytics, UI/UX design and digital marketing — built around
+            real-world projects, live mentor-led sessions, and verifiable
+            certificates. Learn at your own pace and get dedicated career
+            and interview support to land your first (or next) tech role.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#courses"
-              className="group inline-flex items-center gap-2 rounded-md bg-[#485DAC] px-6 py-3 font-semibold text-white shadow-lg shadow-[#485DAC]/25 transition hover:bg-[#3a4b8a] hover:shadow-xl active:scale-95"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#485DAC] px-7 py-3.5 text-sm font-bold text-white shadow-[0_15px_35px_rgba(72,93,172,0.30)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(72,93,172,0.38)] active:translate-y-0"
             >
+              <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
               Explore Courses
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#why-us"
-              className="inline-flex items-center gap-2 rounded-md px-6 py-3 font-semibold text-slate-700 transition hover:text-[#485DAC] active:scale-95"
+              className="inline-flex items-center gap-2 rounded-full border border-white/90 bg-white/70 px-7 py-3.5 text-sm font-bold text-slate-700 shadow-[0_10px_30px_rgba(70,90,140,0.12)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white"
             >
-              <PlayCircle size={20} />
+              <PlayCircle size={18} className="text-[#485DAC]" />
               How it works
             </a>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-8 text-sm text-slate-500">
-            <div>
-              <CountUp value="8,000+" className="block text-2xl font-extrabold text-slate-900" />
-              Students Trained
-            </div>
-            <div>
-              <CountUp value="40+" className="block text-2xl font-extrabold text-slate-900" />
-              Expert Courses
-            </div>
-            <div>
-              <CountUp value="4.8/5" className="block text-2xl font-extrabold text-slate-900" />
-              Average Rating
-            </div>
+          <div className="mt-11 flex flex-wrap items-center gap-4">
+            {[
+              { value: "8,000+", label: "Students Trained" },
+              { value: "40+", label: "Expert Courses" },
+              { value: "4.8/5", label: "Average Rating" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="rounded-2xl border border-white/80 bg-white/60 px-5 py-3.5 shadow-[0_10px_30px_rgba(70,90,140,0.08)] backdrop-blur-xl"
+              >
+                <CountUp value={s.value} className="block text-xl font-extrabold text-slate-900 sm:text-2xl" />
+                <div className="mt-0.5 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                  {s.label}
+                </div>
+              </div>
+            ))}
           </div>
         </Reveal>
 
         <Reveal delay={150}>
-          <CodeShowcase />
+          <div className="relative">
+            <div className="absolute -inset-6 rounded-[36px] bg-gradient-to-tr from-sky-300/25 via-purple-300/15 to-pink-300/25 blur-3xl" />
+            <TiltCard className="relative">
+              <CodeShowcase />
+            </TiltCard>
+          </div>
         </Reveal>
       </div>
     </section>

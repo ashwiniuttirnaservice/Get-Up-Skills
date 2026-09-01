@@ -22,6 +22,8 @@ import WebinarCarousel from "@/components/WebinarCarousel";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import HeroSpotlight from "@/components/HeroSpotlight";
+import TiltCard from "@/components/TiltCard";
 
 /* =========================================================
    DUMMY WEBINAR DATA
@@ -334,7 +336,7 @@ export default function WebinarsPage() {
           HERO (3D PERSPECTIVE & ANIMATED LOOK)
       ====================================================== */}
 
-      <section className="relative overflow-hidden px-4 pb-20 pt-16 sm:px-6 sm:pt-20 lg:px-8 lg:pb-28">
+      <section className="relative overflow-hidden px-4 pb-14 pt-10 sm:px-6 sm:pt-14 lg:px-8 lg:pb-16">
 
         {/* Dynamic 3D Hero Glow Orbs */}
         <div
@@ -349,6 +351,9 @@ export default function WebinarsPage() {
         <div className="absolute left-[5%] top-20 hidden h-24 w-24 animate-pulse rounded-3xl border border-white/80 bg-gradient-to-br from-white/80 to-sky-100/40 shadow-[0_20px_50px_rgba(80,120,180,0.15)] backdrop-blur-2xl lg:block transform -rotate-12 hover:rotate-0 transition-transform duration-500" />
 
         <div className="absolute right-[5%] top-32 hidden h-28 w-28 animate-bounce rounded-full border border-white/90 bg-gradient-to-tr from-white/70 to-pink-100/40 shadow-[0_20px_50px_rgba(200,100,150,0.12)] backdrop-blur-2xl lg:block duration-1000" />
+
+        {/* Cursor-following spotlight — moves the light with the mouse */}
+        <HeroSpotlight color="#485DAC" />
 
         <div className="relative mx-auto max-w-7xl">
 
@@ -472,7 +477,7 @@ export default function WebinarsPage() {
               {/* Background Multi-layer Glow */}
               <div className="absolute -inset-8 rounded-[40px] bg-gradient-to-tr from-sky-300/30 via-purple-300/20 to-pink-300/30 blur-3xl transform -rotate-3" />
 
-              <div className="group relative overflow-hidden rounded-[32px] border border-white/90 bg-white/65 p-3.5 shadow-[0_35px_90px_rgba(70,90,160,0.20)] backdrop-blur-2xl transition-transform duration-700 hover:rotate-1 hover:scale-[1.02]">
+              <TiltCard className="group relative overflow-hidden rounded-[32px] border border-white/90 bg-white/65 p-3.5 shadow-[0_35px_90px_rgba(70,90,160,0.20)] backdrop-blur-2xl hover:shadow-[0_45px_100px_rgba(70,90,160,0.28)]">
 
                 {/* Image */}
 
@@ -562,7 +567,7 @@ export default function WebinarsPage() {
 
                 </div>
 
-              </div>
+              </TiltCard>
 
             </div>
 
@@ -573,40 +578,13 @@ export default function WebinarsPage() {
       </section>
 
       {/* =====================================================
-          CATEGORY FILTER VISUAL
-      ====================================================== */}
-
-      <section className="border-y border-white/80 bg-white/35 px-4 py-5 backdrop-blur-xl sm:px-6 lg:px-8">
-
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-2">
-
-          {categories.map(
-            (category, index) => (
-              <button
-                key={category}
-                type="button"
-                className={`rounded-full px-5 py-2.5 text-[12px] font-semibold transition-all duration-300 ${
-                  index === 0
-                    ? "bg-[#485DAC] text-white shadow-[0_8px_20px_rgba(72,93,172,0.20)]"
-                    : "border border-white/80 bg-white/60 text-slate-600 backdrop-blur-xl hover:-translate-y-0.5 hover:bg-white hover:text-[#485DAC]"
-                }`}
-              >
-                {category}
-              </button>
-            )
-          )}
-
-        </div>
-
-      </section>
-
-      {/* =====================================================
-          UPCOMING WEBINARS (id="upcoming")
+          UPCOMING WEBINARS (id="upcoming") — includes the
+          working category filter (wired to activeCat state).
       ====================================================== */}
 
       <section
         id="upcoming"
-        className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+        className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8"
       >
 
         <div className="mx-auto max-w-7xl">
@@ -656,7 +634,7 @@ export default function WebinarsPage() {
           WEEKEND WORKSHOPS (id="workshops")
       ====================================================== */}
 
-      <section id="workshops" className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+      <section id="workshops" className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Reveal className="text-center">
             <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-[#485DAC]">
@@ -740,7 +718,7 @@ export default function WebinarsPage() {
           COMMUNITY HACKATHONS (id="hackathons") - Redesigned UI
       ====================================================== */}
 
-      <section id="hackathons" className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+      <section id="hackathons" className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-7xl">
           
           <Reveal className="text-center">
@@ -836,7 +814,7 @@ export default function WebinarsPage() {
           FEATURED WEBINAR BANNER
       ====================================================== */}
 
-      <section className="px-4 pb-20 sm:px-6 sm:pb-24 lg:px-8">
+      <section className="px-4 pb-14 sm:px-6 sm:pb-16 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
 
@@ -942,7 +920,7 @@ export default function WebinarsPage() {
           WHY ATTEND
       ====================================================== */}
 
-      <section className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+      <section className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
 
@@ -1015,7 +993,7 @@ export default function WebinarsPage() {
 
       <section
         id="webinars"
-        className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+        className="px-4 py-14 sm:px-6 sm:py-16 lg:px-8"
       >
 
         <div className="mx-auto max-w-7xl">
@@ -1120,7 +1098,7 @@ export default function WebinarsPage() {
           FINAL CTA
       ====================================================== */}
 
-      <section className="px-4 pb-20 sm:px-6 sm:pb-28 lg:px-8">
+      <section className="px-4 pb-14 sm:px-6 sm:pb-20 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
 

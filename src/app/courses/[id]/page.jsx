@@ -3,6 +3,7 @@ import { ShieldCheck } from "lucide-react";
 import { courses, getCourse } from "@/data/courses";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
 import Testimonials from "@/components/Testimonials";
 import Instructors from "@/components/Instructors";
 import FAQ from "@/components/FAQ";
@@ -45,12 +46,12 @@ export default async function CourseDetailPage({ params }) {
         <JobAssistance course={course} />
 
         <section className="py-4">
-          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          <Reveal className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
             <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-5 py-2.5 text-sm font-semibold text-slate-700">
               <ShieldCheck size={18} className="text-[#485DAC]" />
               GetUpSkill Promise — Excellence or 100% Refund
             </span>
-          </div>
+          </Reveal>
         </section>
 
         <Instructors />

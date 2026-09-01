@@ -110,13 +110,13 @@ export default function BlogPage() {
                       >
                         {post.category}
                       </span>
-                      <h3 className="mt-3 flex-1 text-lg font-bold leading-snug text-slate-900">
+                      <h3 className="mt-3 text-lg font-bold leading-snug text-slate-900">
                         {post.title}
                       </h3>
                       <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600">
                         {post.excerpt}
                       </p>
-                      <div className="mt-4 flex items-center gap-4 border-t border-slate-100 pt-4 text-xs text-slate-500">
+                      <div className="mt-auto flex items-center gap-4 border-t border-slate-100 pt-4 text-xs text-slate-500">
                         <span className="flex items-center gap-1">
                           <Calendar size={12} /> {post.date}
                         </span>

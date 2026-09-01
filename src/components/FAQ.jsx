@@ -52,10 +52,11 @@ export default function FAQ() {
     <section id="faq" className="scroll-mt-28 py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <Reveal className="text-center">
-          <span className="text-sm font-semibold uppercase tracking-wider text-[#53B8EC]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[11px] font-bold tracking-wide text-slate-500 shadow-sm">
+            <HelpCircle className="h-3.5 w-3.5 text-[#53B8EC]" />
             FAQ
-          </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          </div>
+          <h2 className="mt-5 text-3xl font-extrabold text-slate-900 sm:text-4xl">
             Frequently Asked Questions
           </h2>
         </Reveal>

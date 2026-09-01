@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import VisionStrip from "@/components/VisionStrip";
 import CredibilityBar from "@/components/CredibilityBar";
+import SkillsMarquee from "@/components/SkillsMarquee";
 import Courses from "@/components/Courses";
 import Instructors from "@/components/Instructors";
 import WhyUs from "@/components/WhyUs";
@@ -16,7 +18,9 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <VisionStrip />
         <CredibilityBar />
+        <SkillsMarquee />
         <Courses />
         <Instructors />
         <WhyUs />

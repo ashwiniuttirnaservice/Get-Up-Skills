@@ -122,7 +122,7 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link
-          href="#home"
+          href="/"
           className="group flex shrink-0 items-center gap-2 font-extrabold text-xl"
         >
           <Image
@@ -140,7 +140,7 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-6 lg:flex xl:gap-7">
           <a
-            href="#home"
+            href="/"
             className="group relative whitespace-nowrap text-sm font-medium text-slate-700 transition hover:text-[#485DAC]"
           >
             Home
@@ -198,7 +198,7 @@ export default function Navbar() {
       <div className={`border-t border-black/5 bg-white px-4 py-4 lg:hidden ${open ? "block" : "hidden"}`}>
         <nav className="flex flex-col gap-1">
           <a
-            href="#home"
+            href="/"
             onClick={() => setOpen(false)}
             className="py-2 text-sm font-medium text-slate-700"
           >

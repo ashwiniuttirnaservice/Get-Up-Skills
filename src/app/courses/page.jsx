@@ -6,6 +6,7 @@ import { courseMenu } from "@/data/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CourseCard from "@/components/CourseCard";
+import Reveal from "@/components/Reveal";
 
 const LEVELS = ["Beginner", "Intermediate", "Advanced"];
 
@@ -39,7 +40,7 @@ export default async function AllCoursesPage({ searchParams }) {
       <main>
         <section className="bg-slate-50 py-8 sm:py-10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-2xl text-center">
+            <Reveal className="mx-auto max-w-2xl text-center">
               <span className="text-sm font-semibold uppercase tracking-wider text-[#E9577C]">
                 Our Courses
               </span>
@@ -49,10 +50,10 @@ export default async function AllCoursesPage({ searchParams }) {
               <p className="mt-2 text-slate-600">
                 Every program in the GetUpSkill LMS, pulled live from the backend.
               </p>
-            </div>
+            </Reveal>
 
             {/* Level filter */}
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+            <Reveal delay={100} className="mt-5 flex flex-wrap items-center justify-center gap-2">
               <Link
                 href="/courses"
                 className={`rounded-full px-4 py-1.5 text-sm font-semibold transition ${
@@ -76,12 +77,14 @@ export default async function AllCoursesPage({ searchParams }) {
                   {item.label}
                 </Link>
               ))}
-            </div>
+            </Reveal>
 
             {courses.length > 0 ? (
               <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {courses.map((course) => (
-                  <CourseCard key={course.id} course={course} />
+                {courses.map((course, i) => (
+                  <Reveal key={course.id} delay={Math.min(i * 60, 480)}>
+                    <CourseCard course={course} />
+                  </Reveal>
                 ))}
               </div>
             ) : (

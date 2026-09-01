@@ -1,4 +1,4 @@
-import { Quote, Star } from "lucide-react";
+import { Quote, Sparkles, Star } from "lucide-react";
 import { testimonials } from "@/data/site";
 import Reveal from "./Reveal";
 
@@ -11,10 +11,11 @@ export default function Testimonials() {
     <section id="testimonials" className="relative scroll-mt-28 overflow-hidden bg-slate-50 py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-wider text-[#E9577C]">
-            Testimonials
-          </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[11px] font-bold tracking-wide text-slate-500 shadow-sm">
+            <Sparkles className="h-3.5 w-3.5 text-[#E9577C]" />
+            TESTIMONIALS
+          </div>
+          <h2 className="mt-5 text-3xl font-extrabold text-slate-900 sm:text-4xl">
             What Our Students Say
           </h2>
         </Reveal>

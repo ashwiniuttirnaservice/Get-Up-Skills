@@ -123,8 +123,8 @@ export const faqs = [
 export const LOGIN_URL = "https://getupskills.com/login";
 export const SIGNUP_URL = "https://getupskills.com/register";
 
-// Plain (non-dropdown) link shown between the Resources and Events menus.
-export const nav = [{ label: "Data Challenges", href: "#courses" }];
+// Plain (non-dropdown) links shown between the Resources and Events menus.
+export const nav = [];
 
 // Dropdown shown under the "Courses" nav item — mirrors the LMS backend's
 // course `type` field (Course.type enum: Beginner/Intermediate/Advanced),
@@ -200,12 +200,12 @@ export const eventsMenu = [
 export const testimonialsMenu = [
   {
     label: "Student Reviews",
-    href: "#testimonials",
+    href: "/#testimonials",
     desc: "Ratings and feedback from our learners",
   },
   {
     label: "Video Testimonials",
-    href: "#testimonials",
+    href: "/#testimonials",
     desc: "Watch learners share their GetUpSkill journey",
   },
 ];

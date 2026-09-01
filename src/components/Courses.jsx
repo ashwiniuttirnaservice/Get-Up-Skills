@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import { courses as staticCourses } from "@/data/courses";
 import { getCourses } from "@/lib/api";
 import { toCardCourse } from "@/lib/mapApiCourse";
@@ -15,12 +16,13 @@ export default async function Courses() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <span className="text-sm font-semibold uppercase tracking-wider text-[#E9577C]">
-              Our Courses
-            </span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[11px] font-bold tracking-wide text-slate-500 shadow-sm">
+              <Sparkles className="h-3.5 w-3.5 text-[#E9577C]" />
+              OUR COURSES
+            </div>
           </Reveal>
           <Reveal delay={150}>
-            <h2 className="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            <h2 className="mt-5 text-3xl font-extrabold text-slate-900 sm:text-4xl">
               Featured Courses
             </h2>
           </Reveal>
@@ -36,15 +38,17 @@ export default async function Courses() {
           <CourseCarousel courses={courses} />
         </Reveal>
 
-        <div className="mt-12 flex flex-col items-center gap-4 text-center">
+        <div className="mt-14 flex flex-col items-center gap-5 text-center">
           <Link
             href="/courses"
-            className="inline-flex items-center rounded-md border-2 border-[#485DAC] px-6 py-3 font-semibold text-[#485DAC] transition hover:bg-[#485DAC] hover:text-white active:scale-95"
+            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] px-7 py-3.5 text-sm font-bold text-white shadow-[0_15px_35px_rgba(72,93,172,0.28)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(72,93,172,0.36)] active:translate-y-0"
           >
             View All Courses
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
-          <span className="text-sm font-semibold text-slate-500">
-            🛡️ GetUpSkill Promise — Excellence or 100% Refund
+          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500">
+            <ShieldCheck size={16} className="text-emerald-500" />
+            GetUpSkill Promise — Excellence or 100% Refund
           </span>
         </div>
       </div>
