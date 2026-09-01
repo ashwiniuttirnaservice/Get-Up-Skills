@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight, Star } from "lucide-react";
 import CodeShowcase from "./CodeShowcase";
 import Reveal from "./Reveal";
@@ -60,6 +61,17 @@ export default function Hero() {
               }}
             />
 
+            {/* Course-cover photo, peeking out behind the code card */}
+            <div className="absolute -right-6 -top-8 hidden w-40 rotate-6 overflow-hidden rounded-xl border-4 border-white shadow-[0_20px_45px_rgba(30,41,80,0.2)] sm:block">
+              <Image
+                src="/courses/data-science-bootcamp.svg"
+                alt="Data Science Bootcamp"
+                width={800}
+                height={450}
+                className="h-24 w-full object-cover"
+              />
+            </div>
+
             <TiltCard className="relative">
               <CodeShowcase />
             </TiltCard>
@@ -73,6 +85,17 @@ export default function Hero() {
                 <div className="text-sm font-bold text-slate-900">95% completion</div>
                 <div className="text-xs text-slate-400">learners finish what they start</div>
               </div>
+            </div>
+
+            {/* Second course-cover photo, small, overlapping bottom-right */}
+            <div className="absolute -bottom-8 right-6 hidden w-28 -rotate-6 overflow-hidden rounded-xl border-4 border-white shadow-[0_20px_45px_rgba(30,41,80,0.2)] md:block">
+              <Image
+                src="/courses/ui-ux-design.svg"
+                alt="UI/UX Design"
+                width={800}
+                height={450}
+                className="h-16 w-full object-cover"
+              />
             </div>
           </div>
         </Reveal>
