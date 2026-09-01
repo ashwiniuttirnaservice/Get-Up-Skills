@@ -31,6 +31,18 @@ export const features = [
     desc: "Join a community of learners and mentors for doubt-solving, code reviews and networking.",
     accent: "#485DAC",
   },
+  {
+    icon: "BadgeCheck",
+    title: "Verified Certificates",
+    desc: "Earn an industry-recognized certificate for every course you complete — ready for your resume and LinkedIn.",
+    accent: "#53B8EC",
+  },
+  {
+    icon: "Rocket",
+    title: "Placement Support",
+    desc: "Resume reviews, mock interviews and job referrals as you near course completion, so you land the role faster.",
+    accent: "#E9577C",
+  },
 ];
 
 export const stats = [

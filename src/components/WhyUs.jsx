@@ -1,4 +1,13 @@
-import { GraduationCap, Clock, Briefcase, Users, Sparkles, TrendingUp } from "lucide-react";
+import {
+  GraduationCap,
+  Clock,
+  Briefcase,
+  Users,
+  BadgeCheck,
+  Rocket,
+  Sparkles,
+  TrendingUp,
+} from "lucide-react";
 import { features, stats } from "@/data/site";
 import Reveal from "./Reveal";
 
@@ -7,6 +16,8 @@ const icons = {
   Clock,
   Briefcase,
   Users,
+  BadgeCheck,
+  Rocket,
 };
 
 export default function WhyUs() {
