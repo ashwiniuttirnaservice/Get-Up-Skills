@@ -19,7 +19,7 @@ export const courses = [
     skills: ["React", "Node.js", "MongoDB", "Express"],
     outcomes: ["Frontend Developer", "Backend Developer", "Full Stack Engineer"],
     color: "#53B8EC",
-    image: "/courses/full-stack-web-dev.svg",
+    image: "/courses/full-stack-web-dev.png",
   },
   {
     id: "data-science-bootcamp",
@@ -41,7 +41,7 @@ export const courses = [
     skills: ["Python", "Pandas", "Scikit-learn", "SQL"],
     outcomes: ["Data Analyst", "Data Scientist", "ML Engineer"],
     color: "#485DAC",
-    image: "/courses/data-science-bootcamp.svg",
+    image: "/courses/data-science-bootcamp.png",
   },
   {
     id: "digital-marketing",
@@ -62,7 +62,7 @@ export const courses = [
     skills: ["SEO", "Google Ads", "Analytics", "Content"],
     outcomes: ["Digital Marketer", "SEO Specialist", "Performance Marketer"],
     color: "#E9577C",
-    image: "/courses/digital-marketing.svg",
+    image: "/courses/digital-marketing.png",
   },
   {
     id: "ui-ux-design",
@@ -83,7 +83,7 @@ export const courses = [
     skills: ["Figma", "Wireframing", "Prototyping"],
     outcomes: ["UI Designer", "UX Designer", "Product Designer"],
     color: "#C7DA40",
-    image: "/courses/ui-ux-design.svg",
+    image: "/courses/ui-ux-design.png",
   },
   {
     id: "cloud-devops",
@@ -104,7 +104,7 @@ export const courses = [
     skills: ["AWS", "Docker", "Kubernetes", "CI/CD"],
     outcomes: ["DevOps Engineer", "Cloud Engineer", "Site Reliability Engineer"],
     color: "#53B8EC",
-    image: "/courses/cloud-devops.svg",
+    image: "/courses/cloud-devops.png",
   },
   {
     id: "python-programming",
@@ -125,7 +125,7 @@ export const courses = [
     skills: ["Python", "OOP", "Automation"],
     outcomes: ["Python Developer", "Automation Engineer", "Junior Backend Developer"],
     color: "#485DAC",
-    image: "/courses/python-programming.svg",
+    image: "/courses/python-programming.png",
   },
 ];
 

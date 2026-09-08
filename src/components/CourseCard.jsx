@@ -28,13 +28,17 @@ export default function CourseCard({ course, compact = false }) {
 
   return (
     <div
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
-      style={{ "--accent": course.color }}
+      className="group relative flex flex-col overflow-hidden rounded-[22px] border bg-white transition-all duration-300 hover:-translate-y-2 hover:border-[color-mix(in_srgb,var(--accent)_90%,transparent)] hover:shadow-[0_30px_55px_-18px_color-mix(in_srgb,var(--accent)_55%,transparent),0_0_0_1px_color-mix(in_srgb,var(--accent)_30%,transparent)]"
+      style={{
+        "--accent": course.color,
+        borderColor: `${course.color}30`,
+        boxShadow: `0 10px 30px -18px ${course.color}55, 0 1px 2px rgba(15,23,42,0.04)`,
+      }}
     >
       {/* Banner */}
       <Link
         href={href}
-        className={`relative block overflow-hidden ${compact ? "h-20" : "h-40"}`}
+        className={`relative block overflow-hidden ${compact ? "h-20" : "h-44"}`}
       >
         <Image
           src={course.image}
@@ -43,6 +47,8 @@ export default function CourseCard({ course, compact = false }) {
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
+        {/* Bottom fade so badges/edge always stay legible over any photo */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/25 to-transparent" />
 
         {course.badge && (
           <span
@@ -161,10 +167,10 @@ export default function CourseCard({ course, compact = false }) {
           )}
           <Link
             href={href}
-            className={`flex items-center gap-1 rounded-lg font-semibold text-white shadow-sm transition group-hover:gap-2 ${
-              compact ? "px-2.5 py-1.5 text-xs" : "px-3 py-2 text-sm"
+            className={`flex items-center gap-1 rounded-lg font-semibold text-white shadow-sm transition-all duration-300 group-hover:gap-2 group-hover:shadow-md group-hover:-translate-y-0.5 ${
+              compact ? "px-2.5 py-1.5 text-xs" : "px-3.5 py-2 text-sm"
             }`}
-            style={{ backgroundColor: course.color }}
+            style={{ backgroundImage: `linear-gradient(135deg, ${course.color}, ${course.color}cc)` }}
           >
             View
             <ArrowRight size={compact ? 12 : 15} />

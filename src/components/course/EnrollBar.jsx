@@ -1,3 +1,5 @@
+import EnrollNowButton from "./EnrollNowButton";
+
 export default function EnrollBar({ course }) {
   return (
     <div className="sticky bottom-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur-md lg:hidden">
@@ -11,13 +13,13 @@ export default function EnrollBar({ course }) {
           </div>
           <p className="text-[11px] text-slate-400">Incl. of all taxes</p>
         </div>
-        <a
-          href="#"
+        <EnrollNowButton
+          course={course}
           className="rounded-lg px-6 py-2.5 text-sm font-semibold text-white shadow-lg"
           style={{ backgroundColor: course.color }}
         >
           Enroll Now
-        </a>
+        </EnrollNowButton>
       </div>
     </div>
   );

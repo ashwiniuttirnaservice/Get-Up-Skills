@@ -132,3 +132,51 @@ export async function getCourseCurriculum(id) {
     return null;
   }
 }
+
+/** A real Mongo ObjectId string — the only kind of id the LMS backend accepts. */
+function isObjectId(id) {
+  return typeof id === "string" && /^[0-9a-fA-F]{24}$/.test(id);
+}
+
+/**
+ * POST /api/enrollments/enroll — public lead/enrollment capture, called from
+ * the "Enroll Now" form. Creates (or updates) a Student + Enrollment on the
+ * backend. `courseId` is only sent when it's a real backend course id (the
+ * static course catalog uses slug ids that don't exist as Course documents
+ * there) — the enquiry is still recorded either way.
+ *
+ * Throws with a user-facing message on validation/network failure so the
+ * calling form can show it.
+ */
+export async function enrollStudent({ fullName, mobileNo, email, collegeName, courseId }) {
+  let res;
+  try {
+    res = await fetch(`${API_BASE}/api/enrollments/enroll`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fullName,
+        mobileNo,
+        email,
+        collegeName,
+        enrolledCourses: isObjectId(courseId) ? [courseId] : [],
+      }),
+      signal: AbortSignal.timeout(10000),
+    });
+  } catch {
+    throw new Error("Couldn't reach the server. Please check your connection and try again.");
+  }
+
+  let json = null;
+  try {
+    json = await res.json();
+  } catch {
+    // no JSON body
+  }
+
+  if (!res.ok || json?.success === false) {
+    throw new Error(json?.message || "Something went wrong. Please try again.");
+  }
+
+  return json?.data;
+}

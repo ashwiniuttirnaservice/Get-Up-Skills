@@ -12,6 +12,7 @@ import {
 import Reveal from "../Reveal";
 import HeroSpotlight from "../HeroSpotlight";
 import TiltCard from "../TiltCard";
+import EnrollNowButton from "./EnrollNowButton";
 
 function discountPercent(price, original) {
   if (!original) return null;
@@ -149,13 +150,13 @@ export default function CourseHero({ course }) {
             {/* Dual CTA */}
             <Reveal delay={600}>
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a
-                  href="#"
+                <EnrollNowButton
+                  course={course}
                   className="btn-shine rounded-lg bg-white px-7 py-3 font-bold shadow-xl transition hover:-translate-y-0.5 hover:shadow-2xl active:scale-95"
                   style={{ color: course.color }}
                 >
                   Enroll Now — {course.price}
-                </a>
+                </EnrollNowButton>
                 <a
                   href="#faq"
                   className="flex items-center gap-2 rounded-lg border border-white/30 px-6 py-3 font-semibold text-white transition hover:bg-white/10 active:scale-95"
@@ -201,13 +202,13 @@ export default function CourseHero({ course }) {
                 )}
                 <p className="mt-1 text-xs text-slate-400">Incl. of all taxes</p>
 
-                <a
-                  href="#"
+                <EnrollNowButton
+                  course={course}
                   className="btn-shine mt-5 flex w-full items-center justify-center rounded-lg px-6 py-3 font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl active:scale-95"
                   style={{ backgroundColor: course.color }}
                 >
                   Enroll Now
-                </a>
+                </EnrollNowButton>
                 <p className="mt-2 text-center text-xs text-slate-500">
                   Taken our courses before? Pay only the difference.
                 </p>

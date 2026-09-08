@@ -19,8 +19,17 @@ export default function CareerRoadmapsPage() {
         <ResourcesNav active="/resources/career-roadmaps" />
       </div>
       <main>
-        <section className="bg-slate-50 py-16 sm:py-20">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden bg-slate-50 py-16 sm:py-20">
+          <div className="pointer-events-none absolute -top-24 right-[10%] h-72 w-72 rounded-full bg-[#C7DA40]/15 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 left-[8%] h-72 w-72 rounded-full bg-[#485DAC]/12 blur-3xl" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage: "radial-gradient(rgba(15,23,42,0.9) 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+            }}
+          />
+          <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <Reveal className="mx-auto max-w-2xl text-center">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#C7DA40]/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#7c8a1f]">
                 <Milestone size={12} /> Career Roadmaps
@@ -42,10 +51,19 @@ export default function CareerRoadmapsPage() {
                   <button
                     key={t.id}
                     onClick={() => setActiveId(t.id)}
-                    className={`rounded-full px-5 py-2 text-sm font-semibold shadow-sm transition-all duration-200 ${
-                      isActive ? "text-white" : "bg-white text-slate-600 hover:bg-slate-100"
+                    className={`rounded-full border px-5 py-2 text-sm font-semibold transition-all duration-200 ${
+                      isActive
+                        ? "border-transparent text-white"
+                        : "border-slate-200 bg-white text-slate-600 hover:-translate-y-0.5 hover:border-slate-300"
                     }`}
-                    style={isActive ? { backgroundColor: t.color } : {}}
+                    style={
+                      isActive
+                        ? {
+                            backgroundImage: `linear-gradient(135deg, ${t.color}, ${t.color}cc)`,
+                            boxShadow: `0 12px 28px -10px ${t.color}70`,
+                          }
+                        : {}
+                    }
                   >
                     {t.track}
                   </button>
@@ -69,7 +87,13 @@ export default function CareerRoadmapsPage() {
                       }`}
                     >
                       <div className={`w-full sm:w-1/2 ${isRight ? "sm:pl-10 sm:text-left" : "sm:pr-10 sm:text-right"}`}>
-                        <div className="inline-block rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                        <div
+                          className="inline-block rounded-2xl border bg-white p-5 text-left transition-all duration-300 hover:-translate-y-1"
+                          style={{
+                            borderColor: `${track.color}30`,
+                            boxShadow: `0 10px 26px -16px ${track.color}55`,
+                          }}
+                        >
                           <div className="text-sm font-bold text-slate-900">{step.title}</div>
                           <div
                             className="mt-1.5 inline-flex items-center gap-1 text-xs font-semibold"
@@ -81,8 +105,11 @@ export default function CareerRoadmapsPage() {
                       </div>
 
                       <span
-                        className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white shadow-md"
-                        style={{ backgroundColor: track.color }}
+                        className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white shadow-md ring-4 ring-white transition-transform duration-300 hover:scale-110"
+                        style={{
+                          backgroundImage: `linear-gradient(135deg, ${track.color}, ${track.color}cc)`,
+                          boxShadow: `0 8px 18px -6px ${track.color}80`,
+                        }}
                       >
                         {i + 1}
                       </span>

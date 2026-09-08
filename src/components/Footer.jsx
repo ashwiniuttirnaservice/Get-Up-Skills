@@ -48,13 +48,13 @@ export default function Footer() {
 
         <div className="mt-14 grid gap-10 md:grid-cols-4">
           <div>
-            <div className="flex items-center gap-2 text-xl font-extrabold text-white">
+            <div className="group flex items-center gap-2 text-xl font-extrabold text-white">
               <Image
                 src="/Logo.png"
                 alt="GetUpSkill"
                 width={40}
                 height={40}
-                className="h-9 w-9"
+                className="h-9 w-9 transition-transform duration-300 group-hover:rotate-6"
               />
               <span className="bg-gradient-to-r from-[#7ad0f5] via-[#8b9cf0] to-[#f194ac] bg-clip-text text-transparent">
                 GetUpSkill
@@ -69,23 +69,28 @@ export default function Footer() {
                 <a
                   key={i}
                   href="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.12]"
+                  className="group relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.06] text-slate-300 transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:text-white hover:shadow-[0_8px_20px_rgba(83,184,236,0.35)]"
                 >
-                  <Icon size={16} />
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-br from-[#53B8EC] via-[#485DAC] to-[#E9577C] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <Icon size={16} className="relative z-10" />
                 </a>
               ))}
             </div>
           </div>
 
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wide text-white">Quick Links</h4>
-            <ul className="mt-4 space-y-2.5 text-sm">
+            <h4 className="relative inline-block text-sm font-bold uppercase tracking-wide text-white">
+              Quick Links
+              <span className="absolute -bottom-1.5 left-0 h-0.5 w-6 rounded-full bg-gradient-to-r from-[#53B8EC] to-[#485DAC]" />
+            </h4>
+            <ul className="mt-5 space-y-2.5 text-sm">
               {quickLinks.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="text-slate-400 transition hover:text-white"
+                    className="group inline-flex items-center gap-1.5 text-slate-400 transition-colors duration-200 hover:text-white"
                   >
+                    <span className="h-1 w-1 rounded-full bg-slate-600 transition-colors duration-200 group-hover:bg-[#53B8EC]" />
                     {item.label}
                   </a>
                 </li>
@@ -94,12 +99,19 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wide text-white">Categories</h4>
-            <ul className="mt-4 space-y-2.5 text-sm">
+            <h4 className="relative inline-block text-sm font-bold uppercase tracking-wide text-white">
+              Categories
+              <span className="absolute -bottom-1.5 left-0 h-0.5 w-6 rounded-full bg-gradient-to-r from-[#485DAC] to-[#E9577C]" />
+            </h4>
+            <ul className="mt-5 space-y-2.5 text-sm">
               {["Development", "Data Science", "Design", "Marketing"].map(
                 (c) => (
                   <li key={c}>
-                    <a href="/#courses" className="text-slate-400 transition hover:text-white">
+                    <a
+                      href="/#courses"
+                      className="group inline-flex items-center gap-1.5 text-slate-400 transition-colors duration-200 hover:text-white"
+                    >
+                      <span className="h-1 w-1 rounded-full bg-slate-600 transition-colors duration-200 group-hover:bg-[#E9577C]" />
                       {c}
                     </a>
                   </li>
@@ -108,19 +120,28 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-wide text-white">Contact</h4>
-            <ul className="mt-4 space-y-3 text-sm text-slate-400">
-              <li className="flex items-center gap-2.5">
-                <Mail size={15} className="shrink-0 text-sky-300" />
+          <div id="contact" className="scroll-mt-28">
+            <h4 className="relative inline-block text-sm font-bold uppercase tracking-wide text-white">
+              Contact
+              <span className="absolute -bottom-1.5 left-0 h-0.5 w-6 rounded-full bg-gradient-to-r from-[#E9577C] to-[#C7DA40]" />
+            </h4>
+            <ul className="mt-5 space-y-3 text-sm text-slate-400">
+              <li className="group flex items-center gap-2.5 transition-colors duration-200 hover:text-white">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/[0.06] text-sky-300 transition-colors duration-200 group-hover:bg-sky-400/15">
+                  <Mail size={14} />
+                </span>
                 support@getupskill.com
               </li>
-              <li className="flex items-center gap-2.5">
-                <Phone size={15} className="shrink-0 text-sky-300" />
+              <li className="group flex items-center gap-2.5 transition-colors duration-200 hover:text-white">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/[0.06] text-sky-300 transition-colors duration-200 group-hover:bg-sky-400/15">
+                  <Phone size={14} />
+                </span>
                 +91 98765 43210
               </li>
-              <li className="flex items-center gap-2.5">
-                <MapPin size={15} className="shrink-0 text-sky-300" />
+              <li className="group flex items-center gap-2.5 transition-colors duration-200 hover:text-white">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/[0.06] text-sky-300 transition-colors duration-200 group-hover:bg-sky-400/15">
+                  <MapPin size={14} />
+                </span>
                 Pune, Maharashtra, India
               </li>
             </ul>

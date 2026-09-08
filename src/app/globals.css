@@ -30,6 +30,7 @@ body {
     opacity: 0;
     transform: translateY(-4px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -41,6 +42,7 @@ body {
 ========================================================= */
 
 @keyframes instructorFloat {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -52,6 +54,7 @@ body {
 }
 
 @keyframes polygonFloat {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) rotate(12deg);
@@ -105,6 +108,69 @@ body {
 }
 
 /* =========================================================
+   HERO — badge shimmer sweep
+========================================================= */
+
+@keyframes badgeShimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  60%,
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+.badge-shimmer {
+  animation: badgeShimmer 3.2s ease-in-out infinite;
+}
+
+/* =========================================================
+   HERO — 3D ISOMETRIC EFFECT
+========================================================= */
+
+.iso-container {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.iso-card {
+  transform-style: preserve-3d;
+  transform: rotateX(8deg) rotateY(-14deg) rotateZ(2deg);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.iso-container:hover .iso-card {
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.iso-float-1 {
+  transform: translateZ(60px);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.iso-float-2 {
+  transform: translateZ(100px);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.iso-container:hover .iso-float-1,
+.iso-container:hover .iso-float-2 {
+  transform: translateZ(15px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .iso-card,
+  .iso-float-1,
+  .iso-float-2 {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================================================
    MARQUEE (skills / trust strip)
 ========================================================= */
 
@@ -112,6 +178,7 @@ body {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -121,12 +188,152 @@ body {
   animation: marqueeScroll 32s linear infinite;
 }
 
-.marquee-track:hover .animate-marquee {
+.animate-marquee-reverse {
+  animation: marqueeScroll 32s linear infinite reverse;
+}
+
+.marquee-track:hover .animate-marquee,
+.marquee-track:hover .animate-marquee-reverse {
   animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   COURSES — glow drift, card entrance, auto-advance progress
+========================================================= */
+
+@keyframes blobDrift {
+
+  0%,
+  100% {
+    transform: translate(-50%, -33%) scale(1);
+  }
+
+  50% {
+    transform: translate(-46%, -26%) scale(1.1);
+  }
+}
+
+@keyframes blobDriftAlt {
+
+  0%,
+  100% {
+    transform: translate(20%, 10%) scale(1);
+  }
+
+  50% {
+    transform: translate(10%, 20%) scale(1.15);
+  }
+}
+
+.courses-glow {
+  animation: blobDrift 14s ease-in-out infinite;
+}
+
+.courses-glow-alt {
+  animation: blobDriftAlt 16s ease-in-out infinite;
+}
+
+@keyframes cardPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-card-pop {
+  animation: cardPopIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes carouselProgress {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.carousel-progress {
+  animation-name: carouselProgress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.carousel-progress-paused {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .courses-glow,
+  .courses-glow-alt,
+  .animate-card-pop,
+  .carousel-progress {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   WHY-US — pulsing glow + gentle icon float
+========================================================= */
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 4.5s ease-in-out infinite;
+}
+
+.pulse-glow-delay {
+  animation: pulseGlow 5.5s ease-in-out infinite 1s;
+}
+
+@keyframes iconFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.icon-float {
+  animation: iconFloat 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .pulse-glow,
+  .pulse-glow-delay,
+  .icon-float {
     animation: none;
   }
 }

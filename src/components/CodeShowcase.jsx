@@ -13,9 +13,9 @@ const CODE_LINES = [
   "}",
 ];
 
-const COMMAND = "node fibonacci.js --terms 3";
+const COMMAND = "node fibonacci.js --terms 2";
 
-const OUTPUT_LINES = ["fib(0) = 0", "fib(1) = 1", "fib(2) = 1"];
+const OUTPUT_LINES = ["fib(0) = 0", "fib(1) = 1"];
 
 const FULL_CODE = CODE_LINES.join("\n");
 
@@ -78,12 +78,6 @@ export default function CodeShowcase() {
 
   return (
     <div className="relative">
-      {/* Floating "live" badge */}
-      <div className="absolute -top-3 right-6 z-10 flex items-center gap-1.5 rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-slate-300 shadow-lg ring-1 ring-white/10">
-        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-        live · getupskill.dev
-      </div>
-
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 shadow-2xl">
         {/* Title bar */}
         <div className="flex items-center justify-between border-b border-white/10 bg-black/20 px-4 py-3">
@@ -97,7 +91,7 @@ export default function CodeShowcase() {
         </div>
 
         {/* Body */}
-        <div className="min-h-[320px] p-5 font-mono text-[13px] leading-relaxed sm:text-sm">
+        <div className="p-4 font-mono text-[12px] leading-snug sm:text-[13px]">
           {CODE_LINES.map((line, i) => {
             const revealed = typedCodeLines[i] ?? "";
             const isCurrentLine = isTypingCode && i === typedCodeLines.length - 1;

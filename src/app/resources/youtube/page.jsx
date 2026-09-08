@@ -21,8 +21,17 @@ export default function YouTubePage() {
         <ResourcesNav active="/resources/youtube" />
       </div>
       <main>
-        <section className="bg-slate-50 py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden bg-slate-50 py-16 sm:py-20">
+          <div className="pointer-events-none absolute -top-24 right-[10%] h-72 w-72 rounded-full bg-[#E9577C]/15 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 left-[8%] h-64 w-64 rounded-full bg-[#53B8EC]/12 blur-3xl" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage: "radial-gradient(rgba(15,23,42,0.9) 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+            }}
+          />
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Reveal className="mx-auto max-w-2xl text-center">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E9577C]/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#E9577C]">
                 <PlaySquare size={12} /> YouTube Channel

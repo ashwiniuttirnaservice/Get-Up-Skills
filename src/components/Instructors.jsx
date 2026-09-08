@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import { MessageCircleQuestion, ShieldCheck, Sparkles, Users2 } from "lucide-react";
 import { instructors as fallbackInstructors } from "@/data/site";
 import { getTrainers, trainerPhotoUrl } from "@/lib/api";
 import InstructorCarousel from "./InstructorCarousel";
@@ -71,8 +71,7 @@ function mapTrainer(trainer, index) {
 
     bio:
       summary ||
-      `Mentoring aspiring professionals at GetUpSkill${
-        hasExperience ? ` with over ${years} years of frontline expertise` : ""
+      `Mentoring aspiring professionals at GetUpSkill${hasExperience ? ` with over ${years} years of frontline expertise` : ""
       }.`,
 
     tag: experienceLabel,
@@ -152,99 +151,21 @@ export default async function Instructors() {
   return (
     <section
       id="instructors"
-      className="relative isolate min-h-[680px] overflow-hidden py-20 sm:py-24"
+      className="relative isolate min-h-[680px] overflow-hidden bg-slate-50 py-20 sm:py-24"
     >
       {/* =====================================================
-          MAIN BACKGROUND
-      ====================================================== */}
-
-      <div className="absolute inset-0 -z-30 bg-gradient-to-br from-[#e7f7ff] via-[#f4efff] to-[#fff3f7]" />
-
-      {/* =====================================================
-          LEFT BLUE GLOW
+          BACKGROUND GLOW — same drifting-blob treatment as the
+          Courses section, for a consistent look across the site
       ====================================================== */}
 
       <div
-        className="absolute -left-32 top-24 -z-20 h-[420px] w-[420px] rounded-full opacity-60 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(83,184,236,0.38), rgba(83,184,236,0.08) 55%, transparent 72%)",
-        }}
+        className="courses-glow pointer-events-none absolute left-1/2 top-0 -z-10 h-90 w-180 rounded-full opacity-50 blur-[110px]"
+        style={{ background: "linear-gradient(135deg, rgba(83,184,236,0.25), rgba(233,87,124,0.18))" }}
       />
-
-      {/* =====================================================
-          RIGHT PINK GLOW
-      ====================================================== */}
-
       <div
-        className="absolute -right-32 top-16 -z-20 h-[500px] w-[500px] rounded-full opacity-60 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(233,87,124,0.25), rgba(199,218,64,0.08) 55%, transparent 72%)",
-        }}
+        className="courses-glow-alt pointer-events-none absolute bottom-0 right-0 -z-10 h-80 w-140 rounded-full opacity-40 blur-[100px]"
+        style={{ background: "linear-gradient(135deg, rgba(199,218,64,0.22), rgba(72,93,172,0.16))" }}
       />
-
-      {/* =====================================================
-          BOTTOM PURPLE GLOW
-      ====================================================== */}
-
-      <div
-        className="absolute bottom-[-220px] left-[25%] -z-20 h-[500px] w-[700px] rounded-full opacity-60 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(ellipse, rgba(193,59,232,0.18), rgba(83,184,236,0.12), transparent 70%)",
-        }}
-      />
-
-      {/* =====================================================
-          FLOATING 3D BUBBLE
-      ====================================================== */}
-
-      <div className="instructor-float absolute left-[23%] top-[-28px] -z-10 h-20 w-20 rounded-full border border-white/70 bg-gradient-to-br from-white/80 via-sky-100/60 to-purple-200/40 shadow-[inset_-10px_-10px_25px_rgba(120,160,220,0.12),0_15px_35px_rgba(80,120,180,0.12)]" />
-
-      <div className="instructor-float-delay-1 absolute right-[12%] top-12 -z-10 h-16 w-16 rounded-full border border-white/80 bg-gradient-to-br from-white via-pink-100/70 to-purple-200/40 shadow-[inset_-8px_-8px_20px_rgba(220,120,180,0.15),0_12px_30px_rgba(100,100,180,0.12)]" />
-
-      {/* =====================================================
-          SMALL FLOATING BUBBLES
-      ====================================================== */}
-
-      <div className="instructor-float-delay-2 absolute left-[20%] top-[160px] -z-10 h-4 w-4 rounded-full bg-white/80 shadow-[0_4px_15px_rgba(100,140,200,0.3)]" />
-
-      <div className="instructor-float-delay-3 absolute right-[18%] top-[120px] -z-10 h-3 w-3 rounded-full bg-white/90 shadow-[0_4px_15px_rgba(100,140,200,0.3)]" />
-
-      {/* =====================================================
-          LEFT POLYGON
-      ====================================================== */}
-
-      <div
-        className="polygon-float absolute left-[10%] top-[90px] -z-10 h-16 w-16 rotate-12 opacity-50"
-        style={{
-          clipPath: "polygon(50% 0%, 100% 25%, 85% 85%, 25% 100%, 0% 45%)",
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(160,190,245,0.25))",
-        }}
-      />
-
-      {/* =====================================================
-          RIGHT POLYGON
-      ====================================================== */}
-
-      <div
-        className="polygon-float-delay absolute right-[7%] top-[190px] -z-10 h-20 w-20 -rotate-12 opacity-35"
-        style={{
-          clipPath: "polygon(50% 0%, 100% 25%, 85% 85%, 25% 100%, 0% 45%)",
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.7), rgba(220,150,220,0.25))",
-        }}
-      />
-
-      {/* =====================================================
-          ABSTRACT WAVE
-      ====================================================== */}
-
-      <div className="pointer-events-none absolute bottom-[-100px] left-[-10%] -z-20 h-[260px] w-[120%] rotate-[-3deg] rounded-[50%] border border-white/40 bg-gradient-to-r from-sky-200/20 via-purple-200/20 to-pink-200/25 shadow-[0_-30px_80px_rgba(100,140,220,0.08)] blur-[1px]" />
-
-      <div className="pointer-events-none absolute bottom-[-160px] left-[10%] -z-20 h-[250px] w-[90%] rotate-[4deg] rounded-[50%] border border-white/30 bg-white/20 backdrop-blur-sm" />
 
       {/* =====================================================
           MAIN CONTAINER
@@ -269,7 +190,10 @@ export default async function Instructors() {
           {/* Heading */}
 
           <h2 className="mt-5 text-3xl font-extrabold tracking-[-0.04em] text-[#08123d] sm:text-4xl md:text-[42px]">
-            Learn From Industry Experts
+            Learn From{" "}
+            <span className="bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] bg-clip-text text-transparent">
+              Industry Experts
+            </span>
           </h2>
 
           {/* Description */}
@@ -279,6 +203,25 @@ export default async function Instructors() {
             knowledge to help you build confidence, skills, and career-ready
             expertise.
           </p>
+
+          {/* Trust markers */}
+
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-slate-500">
+            <span className="flex items-center gap-1.5">
+              <Users2 size={15} className="text-[#485DAC]" />
+              {instructors.length}+ Expert Mentors
+            </span>
+            <span className="hidden h-3 w-px bg-slate-300 sm:block" />
+            <span className="flex items-center gap-1.5">
+              <MessageCircleQuestion size={15} className="text-[#E9577C]" />
+              1:1 Doubt Support
+            </span>
+            <span className="hidden h-3 w-px bg-slate-300 sm:block" />
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck size={15} className="text-emerald-500" />
+              Verified Industry Practitioners
+            </span>
+          </div>
         </div>
 
         {/* ===================================================

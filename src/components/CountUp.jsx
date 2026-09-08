@@ -1,63 +1,75 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-/** Splits a display string like "8,000+", "4.8/5", "95%" into its
- * animatable numeric part plus the surrounding prefix/suffix text. */
-function parseValue(str) {
-  const match = str.match(/[\d,]+(\.\d+)?/);
-  if (!match) {
-    return { prefix: "", number: 0, decimals: 0, suffix: str, hasComma: false };
-  }
-  const numStr = match[0];
-  const idx = match.index ?? 0;
-  const prefix = str.slice(0, idx);
-  const suffix = str.slice(idx + numStr.length);
-  const decimals = numStr.includes(".") ? numStr.split(".")[1].length : 0;
-  const hasComma = numStr.includes(",");
-  const number = parseFloat(numStr.replace(/,/g, ""));
-  return { prefix, number, decimals, suffix, hasComma };
-}
-
-export default function CountUp({ value, duration = 1600, className }) {
+/**
+ * Animates a stat string (e.g. "95%", "8,000+", "25+") counting up from 0
+ * the first time it scrolls into view. Parses the leading number out of the
+ * string and re-attaches whatever prefix/suffix it had (%, +, commas).
+ */
+export default function CountUp({ value, duration = 1400, className = "" }) {
   const ref = useRef(null);
-  const started = useRef(false);
-  const { prefix, number, decimals, suffix, hasComma } = parseValue(value);
-  const [display, setDisplay] = useState(decimals > 0 ? (0).toFixed(decimals) : "0");
+
+  const parsed = useMemo(() => {
+    const match = String(value).match(/^(\D*)([\d,]+(?:\.\d+)?)(.*)$/);
+    if (!match) return null;
+    const [, prefix, numStr, suffix] = match;
+    return {
+      prefix,
+      suffix,
+      target: parseFloat(numStr.replace(/,/g, "")),
+      useCommas: numStr.includes(","),
+      decimals: (numStr.split(".")[1] || "").length,
+    };
+  }, [value]);
+
+  const startDisplay = parsed ? `${parsed.prefix}0${parsed.suffix}` : value;
+  const [display, setDisplay] = useState(startDisplay);
+
+  // Reset to the zeroed start state whenever the target value itself
+  // changes, so a re-used instance re-animates instead of freezing on the
+  // old number. Adjusted during render (React's recommended pattern) rather
+  // than in an effect.
+  const [lastStart, setLastStart] = useState(startDisplay);
+  if (startDisplay !== lastStart) {
+    setLastStart(startDisplay);
+    setDisplay(startDisplay);
+  }
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || !parsed) return;
 
-    const observer = new IntersectionObserver(
+    const io = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting || started.current) return;
-        started.current = true;
+        if (!entry.isIntersecting) return;
+        io.disconnect();
 
         const start = performance.now();
-        const tick = (now) => {
+        function tick(now) {
           const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-          const current = number * eased;
-          const formatted =
-            decimals > 0 ? current.toFixed(decimals) : Math.round(current).toString();
-          setDisplay(hasComma ? Number(formatted).toLocaleString("en-US") : formatted);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = parsed.target * eased;
+          const formatted = parsed.decimals
+            ? current.toFixed(parsed.decimals)
+            : Math.round(current).toString();
+          const withCommas = parsed.useCommas
+            ? Number(formatted).toLocaleString("en-IN")
+            : formatted;
+          setDisplay(`${parsed.prefix}${withCommas}${parsed.suffix}`);
           if (progress < 1) requestAnimationFrame(tick);
-        };
+        }
         requestAnimationFrame(tick);
       },
-      { threshold: 0.3 },
+      { threshold: 0.4 }
     );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [number, duration, decimals, hasComma]);
+    io.observe(el);
+    return () => io.disconnect();
+  }, [parsed, duration]);
 
   return (
     <span ref={ref} className={className}>
-      {prefix}
       {display}
-      {suffix}
     </span>
   );
 }

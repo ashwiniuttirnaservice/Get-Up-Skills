@@ -25,6 +25,14 @@ export default function BlogPage() {
       <main>
         <section className="relative overflow-hidden bg-slate-50 py-16 sm:py-20">
           <div className="animate-drift pointer-events-none absolute -top-24 right-[10%] h-72 w-72 rounded-full bg-[#53B8EC] opacity-20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 left-[8%] h-64 w-64 rounded-full bg-[#E9577C]/15 blur-3xl" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage: "radial-gradient(rgba(15,23,42,0.9) 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+            }}
+          />
           <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
             <Reveal>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#53B8EC]/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#53B8EC]">
@@ -47,7 +55,14 @@ export default function BlogPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             {/* Featured post */}
             <Reveal>
-              <article className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-2xl md:flex">
+              <article
+                className="group relative overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[color-mix(in_srgb,var(--accent)_80%,transparent)] hover:shadow-[0_30px_60px_-18px_color-mix(in_srgb,var(--accent)_50%,transparent)] md:flex"
+                style={{
+                  "--accent": ACCENTS[0],
+                  borderColor: `${ACCENTS[0]}30`,
+                  boxShadow: `0 10px 35px -18px ${ACCENTS[0]}55`,
+                }}
+              >
                 <div
                   className="relative flex h-48 shrink-0 items-center justify-center overflow-hidden md:h-auto md:w-2/5"
                   style={{ backgroundImage: `linear-gradient(135deg, ${ACCENTS[0]}, #0f172a 160%)` }}
@@ -99,7 +114,10 @@ export default function BlogPage() {
                 const accent = ACCENTS[(i + 1) % ACCENTS.length];
                 return (
                   <Reveal key={post.id} delay={i * 80} className={i === 0 ? "lg:row-span-2" : ""}>
-                    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
+                    <article
+                      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[color-mix(in_srgb,var(--accent)_80%,transparent)] hover:shadow-[0_28px_50px_-18px_color-mix(in_srgb,var(--accent)_50%,transparent)]"
+                      style={{ "--accent": accent, borderColor: `${accent}25`, boxShadow: `0 6px 20px -14px ${accent}55` }}
+                    >
                       <span
                         className="absolute inset-x-0 top-0 h-1 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
                         style={{ backgroundColor: accent }}
@@ -133,9 +151,10 @@ export default function BlogPage() {
             <Reveal delay={200} className="mt-12 text-center">
               <Link
                 href="/courses"
-                className="inline-flex items-center gap-2 rounded-md border-2 border-[#485DAC] px-6 py-3 font-semibold text-[#485DAC] transition hover:bg-[#485DAC] hover:text-white active:scale-95"
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#53B8EC] via-[#485DAC] to-[#E9577C] px-7 py-3.5 text-sm font-bold text-white shadow-[0_15px_35px_rgba(72,93,172,0.28)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(72,93,172,0.36)] active:translate-y-0"
               >
-                Explore Courses <ArrowRight size={16} />
+                Explore Courses
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Link>
             </Reveal>
           </div>

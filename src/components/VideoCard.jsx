@@ -14,11 +14,16 @@ export default function VideoCard({ video, accent, dark = false }) {
 
   return (
     <article
-      className={`group overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${
+      className={`group overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1.5 ${
         dark
           ? "border border-white/10 bg-white/5 backdrop-blur hover:border-white/20"
-          : "border border-slate-200 bg-white"
+          : "border bg-white hover:border-[color-mix(in_srgb,var(--accent)_80%,transparent)] hover:shadow-[0_28px_50px_-18px_color-mix(in_srgb,var(--accent)_50%,transparent)]"
       }`}
+      style={
+        dark
+          ? undefined
+          : { "--accent": accent, borderColor: `${accent}25`, boxShadow: `0 6px 20px -14px ${accent}55` }
+      }
     >
       <div className="relative aspect-video overflow-hidden">
         {playing ? (
